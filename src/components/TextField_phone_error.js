@@ -1,5 +1,5 @@
 import TextField from "@mui/material/TextField";
-function TextField_phone_error() {
+function TextField_phone_error(props) {
     return (
       <TextField
         error
