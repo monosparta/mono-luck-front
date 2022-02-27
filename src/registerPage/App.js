@@ -1,11 +1,11 @@
 import * as React from "react";
 import "./App.css";
-import MenuBar from "./components/MenuBar"
+import MenuBar from "../components/MenuBar"
 import Link from "@mui/material/Link";
-import TextField_phone from "./components/TextField_phone";
-import ToggleBtn from "./components/ToggleBtn";
+import TextField_phone from "../components/TextField_phone";
+import ToggleBtn from "../components/ToggleBtn";
 import Divider from "@mui/material/Divider";
-import TextField_phone_error from "./components/TextField_phone_error";
+import TextField_phone_error from "../components/TextField_phone_error";
 import Box from '@mui/material/Box';
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
