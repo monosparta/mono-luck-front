@@ -129,7 +129,7 @@ function App() {
   const [devices, setDevices] = React.useState(() => ["0", "2", "5"]);
 
   const handleDevices = (event, newDevices) => {
-    if (newDevices.length) {
+    if (newDevices.length <= 3 && newDevices.length >= 1) {
       setDevices(newDevices);
     }
   };
