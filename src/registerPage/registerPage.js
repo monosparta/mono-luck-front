@@ -1,7 +1,7 @@
 import * as React from "react";
-import "../App.css";
+import "./registerPage.css";
 import { useState } from "react";
-import MenuBar from "../components/MenuBar";
+import MenuBar from "./components/MenuBar";
 import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Divider from "@mui/material/Divider";
