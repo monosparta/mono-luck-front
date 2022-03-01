@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import HomePage from "./Home/Home";
 import RegisterPage from "./registerPage/registerPage";
-import SearchPage from "./searchpage/Searchpage";
+import SearchPage from "./Searchpage/Searchpage";
 
 ReactDOM.render(
   <React.StrictMode>
