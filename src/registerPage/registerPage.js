@@ -1,7 +1,7 @@
 import * as React from "react";
-import "./registerPage.css";
+import "./RegisterPage.css";
 import { useState } from "react";
-import MenuBar from "./components/MenuBar";
+import MenuBar from "../components/MenuBar";
 import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Divider from "@mui/material/Divider";
@@ -16,8 +16,10 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+
 import { styled } from "@mui/material/styles";
 function RegisterPage() {
+  
   const [Open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -26,13 +28,12 @@ function RegisterPage() {
     setnumerror(false);
     sethelperTextError("請輸入您的手機號碼");
     e.preventDefault();
-    if ((num == "") || (checkrule == false)) {
+    if (num == "" || checkrule == false) {
       sethelperTextError("非暢遊會員,無法登記鎖櫃!");
       setnumerror(true);
     } else if (Object.keys(chipData).length == 0) {
       setOpen(true);
     } else {
-      
     }
   };
   const handleCheck = () => {
@@ -42,6 +43,10 @@ function RegisterPage() {
       setcheckrule(true);
     }
   };
+  const handleChangePhone =(e) => {
+    console.log(e.target);
+    setnum(e.target.value);
+  }
 
   const [num, setnum] = useState("");
   const [helperTextCorrect, sethelperTextError] =
@@ -49,10 +54,13 @@ function RegisterPage() {
   const [numerror, setnumerror] = useState(false);
   const [checkrule, setcheckrule] = useState(false);
   const [chipData, setChipData] = React.useState(() => []);
-  const handleDelete = (chipToDelete) => () => {
-    setChipData((chips) =>
-      chips.filter((chip) => chip.key !== chipToDelete.key)
-    );
+
+  const handleDelete = (chipToDelete) => () => {    
+    let chip = chipData.filter(function (item) {
+      return item !== chipToDelete;
+    });
+    setChipData(chip);
+    setFormats(chip);
   };
 
   const [formats, setFormats] = React.useState(() => []);
@@ -61,12 +69,10 @@ function RegisterPage() {
     let format_len = Object.keys(newFormats).length;
     if (format_len > 3) {
       newFormats.shift();
-      setFormats(newFormats);
-      setChipData(newFormats);
-    } else {
-      setFormats(newFormats);
-      setChipData(newFormats);
     }
+    console.log();
+    setFormats(newFormats);
+    setChipData(newFormats);
   };
   return (
     <div class="box">
@@ -228,7 +234,7 @@ function RegisterPage() {
         <TextField
           id="outlined-password-input"
           label="手機號碼"
-          onChange={(e) => setnum(e.target.value)}
+          onChange={(e) => handleChangePhone(e)}
           helperText={helperTextCorrect}
           error={numerror}
         />
@@ -254,9 +260,7 @@ function RegisterPage() {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">
-            {"您尚未選擇鎖櫃"}
-          </DialogTitle>
+          <DialogTitle id="alert-dialog-title">{"您尚未選擇鎖櫃"}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
               請點擊欲租借的鎖櫃編號，可選三項，須至少輸入一項
