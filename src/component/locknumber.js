@@ -1,8 +1,28 @@
 import React from "react";
-import "../page/luck/luck";
+import "../page/luck/luck.css";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import Button from "@mui/material/Button";
+import Checkbox from "@mui/material/Checkbox";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import EditIcon from "@mui/icons-material/Edit";
+import SearchIcon from "@mui/icons-material/Search";
+import List from "@mui/material/List";
+import Drawer from "@mui/material/Drawer";
+import CssBaseline from "@mui/material/CssBaseline";
+import MuiAppBar from "@mui/material/AppBar";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import TagFacesIcon from "@mui/icons-material/TagFaces";
@@ -11,35 +31,192 @@ const ChipListItem = styled("li")(({ theme }) => ({
   margin: theme.spacing(0.5),
 }));
 
-function Lucknumber() {
-  const handleDelete = (chipToDelete) => () => {
-    setChipData((chips) =>
-      chips.filter((chip) => chip.key !== chipToDelete.key)
-    );
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+const drawerWidth = 240;
+
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
+  ({ theme, open }) => ({
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: `-${drawerWidth}px`,
+    ...(open && {
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginLeft: 0,
+    }),
+  })
+);
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  transition: theme.transitions.create(["margin", "width"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: `${drawerWidth}px`,
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.spacing(0, 1),
+  ...theme.mixins.toolbar,
+  justifyContent: "flex-end",
+}));
+
+function App() {
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
   };
 
-  const [devices, setDevices] = React.useState(() => ["0", "2", "5"]);
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+  const CssTextField = styled(TextField)({
+    "& .MuiFormHelperText-root": {
+      "&.Mui-focused": {
+        color: "#1976d2",
+      },
+    },
+    "& label.Mui-focused": {
+      color: "#1976d2",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#1976d2",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "grey",
+      },
+      "&:hover fieldset": {
+        borderColor: "black",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#1976d2",
+      },
+    },
+  });
 
+  const [devices, setDevices] = React.useState(() => ["00", "02", "05"]);
+  const [chipData, setChipData] = React.useState([]);
   const handleDevices = (event, newDevices) => {
     if (newDevices.length <= 3) {
       setDevices(newDevices);
+      setChipData(newDevices);
+      console.log(newDevices);
+    }
+    if (newDevices.length > 3) {
+      newDevices.shift();
+      setDevices(newDevices);
+      setChipData(newDevices);
+      console.log(newDevices);
     }
   };
+  const handleDelete = (chipToDelete) => () => {
+    setChipData((chips) => chips.filter((chip) => chip !== chipToDelete));
+    devices.forEach(function (item, index, arr) {
+      if (item === chipToDelete) {
+        arr.splice(index, 1);
+      }
+    });
+    console.log(chipToDelete);
+  };
+  const [FiledValue, setFiledValue] = React.useState("");
 
-  const [chipData, setChipData] = React.useState([{ key: 0, label: "00" }]);
-  const [chipData1, setChipData1] = React.useState([{ key: 2, label: "02" }]);
-  const [chipData2, setChipData2] = React.useState([{ key: 5, label: "05" }]);
-
-  console.log(chipData);
-  console.log(`choose number  ||: ` + devices[0] + devices[1] + devices[2]);
+  const handleTextField = (event) => {
+    setFiledValue(event.target.value);
+  };
+  console.log(FiledValue);
   return (
     <div className="Table">
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <AppBar position="fixed" open={open}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{ mr: 2, ...(open && { display: "none" }) }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              鎖櫃登記
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: drawerWidth,
+              boxSizing: "border-box",
+            },
+          }}
+          variant="persistent"
+          anchor="left"
+          open={open}
+        >
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "ltr" ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
+            </IconButton>
+          </DrawerHeader>
+
+          <List>
+            <img src="https://imgur.com/PJgYdab.png" alt="mono"></img>
+            <div className="drawer">
+              <p className="drawer-title">MonoLuck</p>
+              <p className="drawer-content">Monosparta</p>
+            </div>
+            {["鎖櫃登記", "查詢登記"].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <EditIcon /> : <SearchIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
+        <Main open={open}></Main>
+      </Box>
+
       <div className="content">
+        <div className="directions">
+          <p>請點擊欲租借的鎖櫃編號，可選三項，須至少輸入一項</p>
+        </div>
+
         <div className="toggleBtn">
           <div className="Btn">
             <ToggleButtonGroup value={devices} onChange={handleDevices}>
               <ToggleButton
-                value="0"
+                value="00"
                 color="primary"
                 style={{
                   width: 48,
@@ -51,7 +228,7 @@ function Lucknumber() {
                 00
               </ToggleButton>
               <ToggleButton
-                value="1"
+                value="01"
                 color="primary"
                 style={{
                   width: 48,
@@ -99,7 +276,7 @@ function Lucknumber() {
                 }}
               ></ToggleButton>
               <ToggleButton
-                value="2"
+                value="02"
                 color="primary"
                 style={{
                   width: 48,
@@ -115,7 +292,7 @@ function Lucknumber() {
           <div className="Btn">
             <ToggleButtonGroup value={devices} onChange={handleDevices}>
               <ToggleButton
-                value="3"
+                value="03"
                 color="primary"
                 style={{
                   width: 48,
@@ -127,7 +304,7 @@ function Lucknumber() {
                 03
               </ToggleButton>
               <ToggleButton
-                value="4"
+                value="04"
                 color="primary"
                 style={{
                   width: 48,
@@ -175,7 +352,7 @@ function Lucknumber() {
                 }}
               ></ToggleButton>
               <ToggleButton
-                value="5"
+                value="05"
                 color="primary"
                 style={{
                   width: 48,
@@ -191,7 +368,7 @@ function Lucknumber() {
           <div className="Btn">
             <ToggleButtonGroup value={devices} onChange={handleDevices}>
               <ToggleButton
-                value="6"
+                value="06"
                 color="primary"
                 style={{
                   width: 48,
@@ -203,7 +380,7 @@ function Lucknumber() {
                 06
               </ToggleButton>
               <ToggleButton
-                value="7"
+                value="07"
                 color="primary"
                 style={{
                   width: 48,
@@ -215,7 +392,7 @@ function Lucknumber() {
                 07
               </ToggleButton>
               <ToggleButton
-                value="8"
+                value="08"
                 color="primary"
                 style={{
                   width: 48,
@@ -227,7 +404,7 @@ function Lucknumber() {
                 08
               </ToggleButton>
               <ToggleButton
-                value="9"
+                value="09"
                 color="primary"
                 style={{
                   width: 48,
@@ -565,57 +742,12 @@ function Lucknumber() {
                   if (data.label === "React") {
                     icon = <TagFacesIcon />;
                   }
-
                   return (
-                    <ChipListItem key={data.key}>
+                    <ChipListItem key={data}>
                       <Chip
                         style={{ height: "32px", width: "61px" }}
                         icon={icon}
-                        label={devices[0]}
-                        onDelete={
-                          data.label === "React"
-                            ? undefined
-                            : handleDelete(data)
-                        }
-                      />
-                    </ChipListItem>
-                  );
-                })}
-                {chipData1.map((data) => {
-                  let icon;
-
-                  if (data.label === "React") {
-                    icon = <TagFacesIcon />;
-                  }
-
-                  return (
-                    <ChipListItem key={data.key}>
-                      <Chip
-                        style={{ height: "32px", width: "61px" }}
-                        icon={icon}
-                        label={devices[1]}
-                        onDelete={
-                          data.label === "React"
-                            ? undefined
-                            : handleDelete(data)
-                        }
-                      />
-                    </ChipListItem>
-                  );
-                })}
-                {chipData2.map((data) => {
-                  let icon;
-
-                  if (data.label === "React") {
-                    icon = <TagFacesIcon />;
-                  }
-
-                  return (
-                    <ChipListItem key={data.key}>
-                      <Chip
-                        style={{ height: "32px", width: "61px" }}
-                        icon={icon}
-                        label={devices[2]}
+                        label={data}
                         onDelete={
                           data.label === "React"
                             ? undefined
@@ -629,9 +761,60 @@ function Lucknumber() {
             </div>
           </div>
         </div>
+
+        <form>
+          <div className="textfield">
+            <Box
+              component="form"
+              sx={{
+                "& > :not(style)": { m: 1, width: "40ch" },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <CssTextField
+                required
+                id="outlined-helperText"
+                label="手機號碼"
+                helperText="請輸入您的手機號碼"
+                onChange={handleTextField}
+              />
+            </Box>
+          </div>
+
+          <div className="agree">
+            <div className="agreeItem">
+              <div>
+                <Checkbox {...label} />
+              </div>
+              <p>我已閱讀且同意遵守　</p>
+              <a
+                href="https://monospace.guide/books/manual/page/31fef"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                新制會員物品管理規範
+              </a>
+            </div>
+          </div>
+
+          <div className="btn">
+            <div className="sendBtn">
+              <Stack spacing={2} direction="row">
+                <Button
+                  variant="contained"
+                  type="submit"
+                  style={{ width: 350, height: 40 }}
+                >
+                  <p>送出</p>
+                </Button>
+              </Stack>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );
 }
 
-export default Lucknumber;
+export default App;
