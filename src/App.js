@@ -1,10 +1,12 @@
 import React from "react";
-import "./App.css";
+import "./page/index/index.css";
 import Lucknumber from "./component/locknumber";
+import Homepage from "./component/homepage";
+
 function App() {
   return (
     <div>
-      <Lucknumber />
+      <Homepage />
     </div>
   );
 }

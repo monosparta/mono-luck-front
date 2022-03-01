@@ -9,7 +9,7 @@
   background-color: #cfcfcf;
   width: 350px;
   height: 1px;
-  margin-top: 20px;
+  margin-top: 5px;
   left: calc(50% - 175px);
 }
 
@@ -97,6 +97,7 @@
 
 .toggleBtn {
   text-align: center;
+  margin-top: 30px;
 }
 
 .toggleBtn .Btn {

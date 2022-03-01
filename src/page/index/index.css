@@ -1,0 +1,136 @@
+.directions {
+  margin: 3px;
+  text-align: center;
+}
+
+.directions::after {
+  content: "";
+  position: absolute;
+  background-color: #cfcfcf;
+  width: 350px;
+  height: 1px;
+  margin-top: 5px;
+  left: calc(50% - 175px);
+}
+
+.directions p {
+  font-size: 14px;
+  color: #6d6d6d;
+}
+
+.choosenum .num {
+  width: 350px;
+  height: 50px;
+  margin: auto;
+}
+
+.choosenum {
+  margin: 20px;
+  text-align: center;
+}
+
+.choosenum p {
+  font-size: 14px;
+  color: #6d6d6d;
+  text-align: left;
+  font-weight: bold;
+}
+
+.choosenum .num::after {
+  content: "";
+  position: absolute;
+  background-color: #cfcfcf;
+  width: 350px;
+  height: 1px;
+  margin-top: 100px;
+  left: calc(50% - 175px);
+}
+
+.textfield {
+  text-align: center;
+  margin: 50px 0 0 0;
+}
+
+.agree,
+.disagree {
+  text-align: left;
+}
+
+.agreeItem,
+.disagreeItem {
+  margin: auto;
+  width: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.agreeItem p {
+  font-size: 14px;
+  color: #6d6d6d;
+}
+
+.agreeItem a,
+.disagreeItem a {
+  font-size: 14px;
+  color: #1976d2;
+}
+
+.disagreeItem p {
+  font-size: 14px;
+  color: #b00020;
+}
+
+.btn {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.sendBtn {
+  width: 350px;
+  margin: auto;
+}
+
+.sendBtn p {
+  font-size: 14px;
+}
+
+.toggleBtn {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.toggleBtn .Btn {
+  margin: 0 auto;
+  width: 350px;
+  padding: 8px;
+}
+
+.Table img {
+  position: absolute;
+  left: 16px;
+}
+
+.drawer {
+  margin: 50px 0 8px 16px;
+}
+
+.drawer-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.drawer-content {
+  font-size: 14px;
+}
+
+.chip .num {
+  width: 350px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.num {
+  font-weight: bold;
+}

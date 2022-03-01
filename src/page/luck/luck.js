@@ -80,17 +80,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 function App() {
-  const [chipData, setChipData] = React.useState([
-    { key: 0, label: "00" },
-    { key: 2, label: "02" },
-    { key: 5, label: "05" },
-  ]);
-
-  const handleDelete = (chipToDelete) => () => {
-    setChipData((chips) =>
-      chips.filter((chip) => chip.key !== chipToDelete.key)
-    );
-  };
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -126,13 +115,36 @@ function App() {
     },
   });
 
-  const [devices, setDevices] = React.useState(() => ["0", "2", "5"]);
-
+  const [devices, setDevices] = React.useState(() => ["00", "02", "05"]);
+  const [chipData, setChipData] = React.useState([]);
   const handleDevices = (event, newDevices) => {
-    if (newDevices.length <= 3 && newDevices.length >= 1) {
+    if (newDevices.length <= 3) {
       setDevices(newDevices);
+      setChipData(newDevices);
+      console.log(newDevices);
+    }
+    if (newDevices.length > 3) {
+      newDevices.shift();
+      setDevices(newDevices);
+      setChipData(newDevices);
+      console.log(newDevices);
     }
   };
+  const handleDelete = (chipToDelete) => () => {
+    setChipData((chips) => chips.filter((chip) => chip !== chipToDelete));
+    devices.forEach(function (item, index, arr) {
+      if (item === chipToDelete) {
+        arr.splice(index, 1);
+      }
+    });
+    console.log(chipToDelete);
+  };
+  const [FiledValue, setFiledValue] = React.useState("");
+
+  const handleTextField = (event) => {
+    setFiledValue(event.target.value);
+  };
+  console.log(FiledValue);
   return (
     <div className="Table">
       <Box sx={{ display: "flex" }}>
@@ -204,7 +216,7 @@ function App() {
           <div className="Btn">
             <ToggleButtonGroup value={devices} onChange={handleDevices}>
               <ToggleButton
-                value="0"
+                value="00"
                 color="primary"
                 style={{
                   width: 48,
@@ -216,7 +228,7 @@ function App() {
                 00
               </ToggleButton>
               <ToggleButton
-                value="1"
+                value="01"
                 color="primary"
                 style={{
                   width: 48,
@@ -264,7 +276,7 @@ function App() {
                 }}
               ></ToggleButton>
               <ToggleButton
-                value="2"
+                value="02"
                 color="primary"
                 style={{
                   width: 48,
@@ -280,7 +292,7 @@ function App() {
           <div className="Btn">
             <ToggleButtonGroup value={devices} onChange={handleDevices}>
               <ToggleButton
-                value="3"
+                value="03"
                 color="primary"
                 style={{
                   width: 48,
@@ -292,7 +304,7 @@ function App() {
                 03
               </ToggleButton>
               <ToggleButton
-                value="4"
+                value="04"
                 color="primary"
                 style={{
                   width: 48,
@@ -340,7 +352,7 @@ function App() {
                 }}
               ></ToggleButton>
               <ToggleButton
-                value="5"
+                value="05"
                 color="primary"
                 style={{
                   width: 48,
@@ -356,7 +368,7 @@ function App() {
           <div className="Btn">
             <ToggleButtonGroup value={devices} onChange={handleDevices}>
               <ToggleButton
-                value="6"
+                value="06"
                 color="primary"
                 style={{
                   width: 48,
@@ -368,7 +380,7 @@ function App() {
                 06
               </ToggleButton>
               <ToggleButton
-                value="7"
+                value="07"
                 color="primary"
                 style={{
                   width: 48,
@@ -380,7 +392,7 @@ function App() {
                 07
               </ToggleButton>
               <ToggleButton
-                value="8"
+                value="08"
                 color="primary"
                 style={{
                   width: 48,
@@ -392,7 +404,7 @@ function App() {
                 08
               </ToggleButton>
               <ToggleButton
-                value="9"
+                value="09"
                 color="primary"
                 style={{
                   width: 48,
@@ -730,13 +742,12 @@ function App() {
                   if (data.label === "React") {
                     icon = <TagFacesIcon />;
                   }
-
                   return (
-                    <ChipListItem key={data.key}>
+                    <ChipListItem key={data}>
                       <Chip
                         style={{ height: "32px", width: "61px" }}
                         icon={icon}
-                        label={data.label}
+                        label={data}
                         onDelete={
                           data.label === "React"
                             ? undefined
@@ -751,48 +762,55 @@ function App() {
           </div>
         </div>
 
-        <div className="textfield">
-          <Box
-            component="form"
-            sx={{
-              "& > :not(style)": { m: 1, width: "40ch" },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <CssTextField
-              id="outlined-helperText"
-              label="手機號碼"
-              helperText="請輸入您的手機號碼"
-            />
-          </Box>
-        </div>
-
-        <div className="agree">
-          <div className="agreeItem">
-            <div>
-              <Checkbox {...label} />
-            </div>
-            <p>我已閱讀且同意遵守　</p>
-            <a
-              href="https://monospace.guide/books/manual/page/31fef"
-              target="_blank"
-              rel="noreferrer noopener"
+        <form>
+          <div className="textfield">
+            <Box
+              component="form"
+              sx={{
+                "& > :not(style)": { m: 1, width: "38ch" },
+              }}
+              noValidate
+              autoComplete="off"
             >
-              新制會員物品管理規範
-            </a>
+              <CssTextField
+                id="outlined-helperText"
+                label="手機號碼"
+                helperText="請輸入您的手機號碼"
+                onChange={handleTextField}
+              />
+            </Box>
           </div>
-        </div>
 
-        <div className="btn">
-          <div className="sendBtn">
-            <Stack spacing={2} direction="row">
-              <Button variant="contained" style={{ width: 350, height: 40 }}>
-                <p>送出</p>
-              </Button>
-            </Stack>
+          <div className="agree">
+            <div className="agreeItem">
+              <div>
+                <Checkbox {...label} />
+              </div>
+              <p>我已閱讀且同意遵守　</p>
+              <a
+                href="https://monospace.guide/books/manual/page/31fef"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                新制會員物品管理規範
+              </a>
+            </div>
           </div>
-        </div>
+
+          <div className="btn">
+            <div className="sendBtn">
+              <Stack spacing={2} direction="row">
+                <Button
+                  variant="contained"
+                  type="submit"
+                  style={{ width: 350, height: 40 }}
+                >
+                  <p>送出</p>
+                </Button>
+              </Stack>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );

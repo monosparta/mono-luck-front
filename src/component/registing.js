@@ -1,19 +1,15 @@
 import React from "react";
-import "./registcomplete.css";
+import "./registing.css";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 
-function Registcomplete() {
+function Registing() {
   return (
     <div className="Table">
-      <img src="https://imgur.com/gczuDrA.png"></img>
-      <h1>登記成功</h1>
       <h2>
-        鎖櫃抽選時間為
+        目前鎖櫃尚在登記中，
         <br />
-        10:00 a.m 12/12
-        <br />
-        抽籤資訊將會公告至本系統
+        請在12/12 AM 10 回來本系統查看中籤資訊
       </h2>
       <div class="button">
         <Stack direction="row" spacing={2}>
@@ -26,4 +22,4 @@ function Registcomplete() {
   );
 }
 
-export default Registcomplete;
+export default Registing;
