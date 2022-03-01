@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./RegisterPage.css";
+import "./registerPage.css";
 import { useState } from "react";
 import MenuBar from "../components/MenuBar";
 import Link from "@mui/material/Link";
@@ -18,6 +18,8 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 import { styled } from "@mui/material/styles";
+import { Grid } from "@material-ui/core";
+import { Box } from "@mui/system";
 function RegisterPage() {
   
   const [Open, setOpen] = useState(false);
@@ -77,15 +79,17 @@ function RegisterPage() {
   return (
     <div class="box">
       <MenuBar name="鎖櫃登記" />
-      <div class="input_num_text mui-text-center">
+      <div class="Text1">
         請點擊欲租借的鎖櫃編號，可選三項，須至少輸入一項
       </div>
       <div>
-        <div>
+        <div className="buttongroup">
+          <div className="group1">
           <ToggleButtonGroup
             value={formats}
             onChange={handleFormat}
             aria-label="text formatting"
+            fullWidth
           >
             <ToggleButton value="00" color="primary">
               00
@@ -100,8 +104,16 @@ function RegisterPage() {
             <ToggleButton value="02" color="primary">
               02
             </ToggleButton>
-
-            <ToggleButton value="03" color="primary">
+          </ToggleButtonGroup>
+          </div>
+          <div className="group2">
+          <ToggleButtonGroup
+            value={formats}
+            onChange={handleFormat}
+            aria-label="text formatting"
+            fullWidth
+          >
+          <ToggleButton value="03" color="primary">
               03
             </ToggleButton>
             <ToggleButton value="04" color="primary">
@@ -113,8 +125,15 @@ function RegisterPage() {
             <ToggleButton value="disabe" disabled></ToggleButton>
             <ToggleButton value="05" color="primary">
               05
-            </ToggleButton>
-
+            </ToggleButton></ToggleButtonGroup>
+          </div>
+          <div className="group3">
+          <ToggleButtonGroup
+            value={formats}
+            onChange={handleFormat}
+            aria-label="text formatting"
+            fullWidth
+          >
             <ToggleButton value="06" color="primary">
               06
             </ToggleButton>
@@ -136,8 +155,16 @@ function RegisterPage() {
             <ToggleButton value="12" color="primary">
               12
             </ToggleButton>
-
-            <ToggleButton value="13" color="primary">
+          </ToggleButtonGroup>
+          </div>
+          <div className="group4">
+          <ToggleButtonGroup
+            value={formats}
+            onChange={handleFormat}
+            aria-label="text formatting"
+            fullWidth
+          >
+                        <ToggleButton value="13" color="primary">
               13
             </ToggleButton>
             <ToggleButton value="14" color="primary">
@@ -158,8 +185,16 @@ function RegisterPage() {
             <ToggleButton value="19" color="primary">
               19
             </ToggleButton>
-
-            <ToggleButton value="20" color="primary">
+          </ToggleButtonGroup>
+          </div>
+          <div className="group5">
+          <ToggleButtonGroup
+            value={formats}
+            onChange={handleFormat}
+            aria-label="text formatting"
+            fullWidth
+          >
+                        <ToggleButton value="20" color="primary">
               20
             </ToggleButton>
             <ToggleButton value="21" color="primary">
@@ -180,7 +215,15 @@ function RegisterPage() {
             <ToggleButton value="26" color="primary">
               26
             </ToggleButton>
-
+          </ToggleButtonGroup>
+          </div>
+          <div className="group6">
+          <ToggleButtonGroup
+            value={formats}
+            onChange={handleFormat}
+            aria-label="text formatting"
+            fullWidth
+          >
             <ToggleButton value="27" color="primary">
               27
             </ToggleButton>
@@ -203,11 +246,13 @@ function RegisterPage() {
               33
             </ToggleButton>
           </ToggleButtonGroup>
-          <div>選擇鎖櫃:</div>
+          </div>
+        </div>
+      </div>
+      <div className="choose">
           <Paper
             sx={{
-              display: "flex",
-              justifyContent: "center",
+              display:"flex", 
               flexWrap: "wrap",
               listStyle: "none",
               p: 0.5,
@@ -215,6 +260,7 @@ function RegisterPage() {
             }}
             component="ul"
           >
+            <div className="Textchoose">選擇鎖櫃:</div>
             {chipData.map((data) => {
               let icon;
               return (
@@ -228,30 +274,30 @@ function RegisterPage() {
               );
             })}
           </Paper>
-        </div>
       </div>
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+        <div className="phonenumber">
         <TextField
           id="outlined-password-input"
           label="手機號碼"
           onChange={(e) => handleChangePhone(e)}
           helperText={helperTextCorrect}
           error={numerror}
+          fullWidth
         />
-        <div>
+        </div>
+        <div className="rules">
           <Checkbox onChange={handleCheck} checked={checkrule} />
           我已閱讀且同意遵守
           <Link href="https://monospace.guide/books/manual/page/31fef">
             新制會員物品管理規範
           </Link>
         </div>
-        <Button variant="contained" type="submit">
+        <div className="buttonsend">
+        <Button variant="contained" type="submit" fullWidth>
           送出
-        </Button>
+        </Button></div>
       </form>
-      <div>
-        <Divider variant="middle" />
-      </div>
 
       <div>
         <Dialog

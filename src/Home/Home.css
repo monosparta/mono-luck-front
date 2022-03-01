@@ -6,9 +6,9 @@
 }
 .Botton{
     position: relative;
-    margin-top: 90px;
-    width: 80%;
-    left: 10vw;
+    width: 380px;
+    margin: 0 auto;
+    top: 20px;
 }
 .Text1{
     position: relative;

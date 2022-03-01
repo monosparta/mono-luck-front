@@ -16,3 +16,70 @@
 .finish_btn{
   padding: 8px;
 }
+.Text1{
+  position: relative;
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 60%;
+}
+.buttongroup{
+  position: relative;
+  display: flexbox;
+  width: 336px;
+  height: 368px;
+  margin-top: 20px;
+  margin: 0 auto;
+}
+.choose{
+  position: relative;
+  width: 380px;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+.Textchoose{
+  position: relative;
+  width: 80px;
+  padding-top: 2px;
+}
+.phonenumber{
+  position: relative;
+  width: 380px;
+  top: 10px;
+  margin: 0 auto;
+}
+.rules{
+  position: relative;
+  width: 380px;
+  margin: 0 auto;
+  top :10px;
+}
+.buttonsend{
+  position: relative;
+  width: 380px;
+  margin: 0 auto;
+  top: 10px;
+}
+.group1{
+  position: relative;
+  margin-top: 10px;
+}
+.group2{
+  position: relative;
+  margin-top: 10px;
+}
+.group3{
+  position: relative;
+  margin-top: 10px;
+}
+.group4{
+  position: relative;
+  margin-top: 10px;
+}
+.group5{
+  position: relative;
+  margin-top: 10px;
+}
+.group6{
+  position: relative;
+  margin-top: 10px;
+}
