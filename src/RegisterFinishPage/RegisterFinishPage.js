@@ -3,8 +3,12 @@ import MenuBar from "../components/MenuBar";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { AppBar, Toolbar, Typography, IconButton } from "@material-ui/core";
 import Button from "@mui/material/Button";
+import { useNavigate } from 'react-router-dom';
+
 
 function RegisterFinishPage() {
+    let history = useNavigate();
+
   return (
     <div>
       <MenuBar name="登記成功" />

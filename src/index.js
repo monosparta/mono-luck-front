@@ -16,10 +16,10 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
         <Route path="/registerPage" element={<RegisterPage />} />
         <Route path="/searchPage" element={<SearchPage />} />
         <Route path="/FinishPage" element={<FinishPage />} />
+        <Route path="/" element={<HomePage />} />
 
       </Routes>
     </Router>

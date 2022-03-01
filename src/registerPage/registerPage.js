@@ -2,7 +2,7 @@ import * as React from "react";
 import "./registerPage.css";
 import { useState } from "react";
 import MenuBar from "../components/MenuBar";
-import Link from "@mui/material/Link";
+import Link  from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Divider from "@mui/material/Divider";
 import Checkbox from "@mui/material/Checkbox";
@@ -16,17 +16,18 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-
+import { useNavigate } from 'react-router-dom';
 import { styled } from "@mui/material/styles";
-import { Grid } from "@material-ui/core";
-import { Box } from "@mui/system";
-function RegisterPage() {
-  
+
+function RegisterPage(props) {
+  let history = useNavigate();
   const [Open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
   };
   const handleSubmit = (e) => {
+  
+
     setnumerror(false);
     sethelperTextError("請輸入您的手機號碼");
     e.preventDefault();
@@ -36,6 +37,7 @@ function RegisterPage() {
     } else if (Object.keys(chipData).length == 0) {
       setOpen(true);
     } else {
+      history("/FinishPage");
     }
   };
   const handleCheck = () => {
