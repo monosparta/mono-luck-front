@@ -16,9 +16,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/registerPage" element={<RegisterPage />} />
-        <Route path="/searchPage" element={<SearchPage />} />
-        <Route path="/FinishPage" element={<FinishPage />} />
+        <Route path="/RegisterPage" element={<RegisterPage />} />
+        <Route path="/SearchPage" element={<SearchPage />} />
+        <Route path="/RegisterFinishPage" element={<FinishPage />} />
         <Route path="/" element={<HomePage />} />
 
       </Routes>

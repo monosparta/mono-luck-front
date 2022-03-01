@@ -8,7 +8,10 @@ import { useNavigate } from 'react-router-dom';
 
 function RegisterFinishPage() {
     let history = useNavigate();
-
+    const handleclick = (e) => {
+      history("/");
+     
+    };
   return (
     <div>
       <MenuBar name="登記成功" />
@@ -21,7 +24,7 @@ function RegisterFinishPage() {
         <div>10:00 a.m.</div>
         <div>12/12 中籤資訊將會公告至本系統。</div>
       </Typography>
-      <Button variant="contained" >完成</Button>
+      <Button variant="contained" onClick={handleclick}>完成</Button>
     </div>
   );
 }
