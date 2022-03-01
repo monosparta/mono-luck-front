@@ -17,6 +17,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { styled } from "@mui/material/styles";
+import { Grid } from "@material-ui/core";
 function RegisterPage() {
   const [Open, setOpen] = useState(false);
   const handleClose = () => {
@@ -71,11 +72,12 @@ function RegisterPage() {
   return (
     <div class="box">
       <MenuBar name="鎖櫃登記" />
-      <div class="input_num_text mui-text-center">
+      <div class="Text1">
         請點擊欲租借的鎖櫃編號，可選三項，須至少輸入一項
       </div>
       <div>
-        <div>
+        <div className="buttongroup">
+          
           <ToggleButtonGroup
             value={formats}
             onChange={handleFormat}
@@ -197,11 +199,12 @@ function RegisterPage() {
               33
             </ToggleButton>
           </ToggleButtonGroup>
-          <div>選擇鎖櫃:</div>
+        </div>
+      </div>
+      <div className="choose">
           <Paper
             sx={{
-              display: "flex",
-              justifyContent: "center",
+              display:"flex", 
               flexWrap: "wrap",
               listStyle: "none",
               p: 0.5,
@@ -209,6 +212,7 @@ function RegisterPage() {
             }}
             component="ul"
           >
+            <div className="Textchoose">選擇鎖櫃:</div>
             {chipData.map((data) => {
               let icon;
               return (
@@ -222,30 +226,30 @@ function RegisterPage() {
               );
             })}
           </Paper>
-        </div>
       </div>
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+        <div className="phonenumber">
         <TextField
           id="outlined-password-input"
           label="手機號碼"
           onChange={(e) => setnum(e.target.value)}
           helperText={helperTextCorrect}
           error={numerror}
+          fullWidth
         />
-        <div>
+        </div>
+        <div className="rules">
           <Checkbox onChange={handleCheck} checked={checkrule} />
           我已閱讀且同意遵守
           <Link href="https://monospace.guide/books/manual/page/31fef">
             新制會員物品管理規範
           </Link>
         </div>
-        <Button variant="contained" type="submit">
+        <div className="buttonsend">
+        <Button variant="contained" type="submit" fullWidth>
           送出
-        </Button>
+        </Button></div>
       </form>
-      <div>
-        <Divider variant="middle" />
-      </div>
 
       <div>
         <Dialog

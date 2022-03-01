@@ -16,3 +16,46 @@
 .finish_btn{
   padding: 8px;
 }
+.Text1{
+  position: relative;
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 60%;
+}
+.buttongroup{
+  position: relative;
+  width: 336px;
+  height: 368px;
+  margin-top: 20px;
+  border: solid 2px blueviolet;
+  margin: 0 auto;
+}
+.choose{
+  position: relative;
+  width: 380px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.Textchoose{
+  position: relative;
+  width: 80px;
+  padding-top: 8px;
+}
+.phonenumber{
+  position: relative;
+  width: 380px;
+  top: 10px;
+  margin: 0 auto;
+}
+.rules{
+  position: relative;
+  width: 380px;
+  margin: 0 auto;
+  top :10px;
+}
+.buttonsend{
+  position: relative;
+  width: 380px;
+  margin: 0 auto;
+  top: 10px;
+}
