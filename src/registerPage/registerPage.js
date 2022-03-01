@@ -318,7 +318,6 @@ function RegisterPage(props) {
             </Button>
           </DialogActions>
         </Dialog>
-        ;
       </div>
     </div>
   );
