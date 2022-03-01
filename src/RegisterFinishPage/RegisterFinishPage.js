@@ -1,7 +1,7 @@
 import * as React from "react";
 import MenuBar from "../components/MenuBar";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import { AppBar, Toolbar, Typography, IconButton } from "@material-ui/core";
+import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
 import { useNavigate } from 'react-router-dom';
 

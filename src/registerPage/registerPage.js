@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./registerPage.css";
+import "./RegisterPage.css";
 import { useState } from "react";
 import MenuBar from "../components/MenuBar";
 import {
@@ -20,6 +20,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 function RegisterPage(props) {
   let history = useNavigate();
@@ -58,7 +59,6 @@ function RegisterPage(props) {
   };
 
   const handleChangePhone = (e) => {
-    console.log(e.target);
     setnum(e.target.value);
   };
 
@@ -308,7 +308,8 @@ function RegisterPage(props) {
           <DialogTitle id="alert-dialog-title">{"您尚未選擇鎖櫃"}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              請點擊欲租借的鎖櫃編號，可選三項，須至少輸入一項
+              <div><ErrorOutlineIcon/></div>
+              <div>請點擊欲租借的鎖櫃編號，可選三項，須至少輸入一項</div>
             </DialogContentText>
           </DialogContent>
           <DialogActions>

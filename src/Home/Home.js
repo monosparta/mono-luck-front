@@ -11,7 +11,6 @@ function Home() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <div className="Appbar">
-        {" "}
         <MenuBar name="首頁" />
       </div>
       <div className="Logo">
