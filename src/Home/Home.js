@@ -1,16 +1,17 @@
 import * as React from 'react';
-import AppBar from './component/AppBar'
+import MenuBar from '../components/MenuBar'
 import Box from '@mui/material/Box';
-import IconButton from './component/IconButton';
-import Monologo from './component/monologo.png';
-import Text1 from './component/Text1';
-import Text2 from './component/Text2';
+import IconButton from '../components/IconButton';
+import Monologo from '../pic/monologo.png';
+import Text1 from '../components/Text1';
+import Text2 from '../components/Text2';
 import './Home.css';
 
 function Home(){
     return(
         <Box sx={{ flexGrow: 1}}>
-        <div className='Appbar'><AppBar/></div>
+        <div className='Appbar'>      <MenuBar name="首頁" />
+</div>
         <div className='Logo'><img src={Monologo} alt ="Monologo"/></div>
         <div className='Bigbox'>
         <div className='Text1'><Text1/></div>
