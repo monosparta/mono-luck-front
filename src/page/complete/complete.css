@@ -1,0 +1,22 @@
+.Complete {
+  text-align: center;
+  width: 350px;
+  margin: 0 auto;
+}
+
+.success {
+  margin: 100px 0 30px 0;
+}
+
+.completeTitle {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.completeContent {
+  font-size: 14px;
+}
+
+.completeArea {
+  margin-bottom: 30px;
+}

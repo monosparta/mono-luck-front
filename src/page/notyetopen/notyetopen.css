@@ -1,0 +1,14 @@
+.Notyetopen {
+  text-align: center;
+  width: 350px;
+  margin: 0 auto;
+}
+
+.notyetopenText {
+  margin: 50px 0 30px 0;
+}
+
+.notyetopenText p {
+  font-size: 14px;
+  margin: 0 0 30px 0;
+}

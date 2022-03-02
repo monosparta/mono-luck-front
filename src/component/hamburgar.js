@@ -1,30 +1,22 @@
 import React from "react";
 import Box from "@mui/material/Box";
+import "./hamburgar.css";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
-import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { styled, useTheme } from "@mui/material/styles";
-import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import EditIcon from "@mui/icons-material/Edit";
-import SearchIcon from "@mui/icons-material/Search";
 import List from "@mui/material/List";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import Chip from "@mui/material/Chip";
-import Paper from "@mui/material/Paper";
-import TagFacesIcon from "@mui/icons-material/TagFaces";
+import ListItemButton from "@mui/material/ListItemButton";
+import EditIcon from "@mui/icons-material/Edit";
+import SearchIcon from "@mui/icons-material/Search";
 
 const drawerWidth = 240;
 
@@ -72,9 +64,11 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-function Ham() {
+function Hamburgar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [color1, setColor1] = React.useState("#000000");
+  const [color2, setColor2] = React.useState("#000000");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -83,63 +77,23 @@ function Ham() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const CssTextField = styled(TextField)({
-    "& .MuiFormHelperText-root": {
-      "&.Mui-focused": {
-        color: "#1976d2",
-      },
-    },
-    "& label.Mui-focused": {
-      color: "#1976d2",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "#1976d2",
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "grey",
-      },
-      "&:hover fieldset": {
-        borderColor: "black",
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "#1976d2",
-      },
-    },
-  });
+  const [selectedIndex, setSelectedIndex] = React.useState("0");
 
-  const [devices, setDevices] = React.useState(() => ["00", "02", "05"]);
-  const [chipData, setChipData] = React.useState([]);
-  const handleDevices = (event, newDevices) => {
-    if (newDevices.length <= 3) {
-      setDevices(newDevices);
-      setChipData(newDevices);
-      console.log(newDevices);
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+    console.log(index);
+    if (index === "1") {
+      setColor1("#02A2EE");
+      setColor2("#000000");
     }
-    if (newDevices.length > 3) {
-      newDevices.shift();
-      setDevices(newDevices);
-      setChipData(newDevices);
-      console.log(newDevices);
+    if (index === "2") {
+      setColor2("#02A2EE");
+      setColor1("#000000");
     }
   };
-  const handleDelete = (chipToDelete) => () => {
-    setChipData((chips) => chips.filter((chip) => chip !== chipToDelete));
-    devices.forEach(function (item, index, arr) {
-      if (item === chipToDelete) {
-        arr.splice(index, 1);
-      }
-    });
-    console.log(chipToDelete);
-  };
-  const [FiledValue, setFiledValue] = React.useState("");
-
-  const handleTextField = (event) => {
-    setFiledValue(event.target.value);
-  };
-  console.log(FiledValue);
+  console.log("c1:" + color1 + ",c2:" + color2);
   return (
-    <div className="Table">
+    <div className="Sidebar">
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar position="fixed" open={open}>
@@ -154,7 +108,7 @@ function Ham() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              鎖櫃登記
+              首頁
             </Typography>
           </Toolbar>
         </AppBar>
@@ -182,19 +136,43 @@ function Ham() {
           </DrawerHeader>
 
           <List>
-            <img src="https://imgur.com/PJgYdab.png" alt="mono"></img>
-            <div className="drawer">
-              <p className="drawer-title">MonoLuck</p>
-              <p className="drawer-content">Monosparta</p>
+            <div className="SidebarImg">
+              <img src="https://imgur.com/PJgYdab.png" alt=""></img>
             </div>
-            {["鎖櫃登記", "查詢登記"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <EditIcon /> : <SearchIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+            <div className="SidebarText">
+              <p className="SidebarTitle">MonoLuck</p>
+              <p className="SidebarContent">Monosparta</p>
+            </div>
+            <Box
+              sx={{
+                width: "100%",
+                maxWidth: 360,
+                bgcolor: "background.paper",
+              }}
+            >
+              <List component="nav" aria-label="main mailbox folders">
+                <ListItemButton
+                  selected={selectedIndex === "1"}
+                  onClick={(event) => handleListItemClick(event, "1")}
+                  style={{ color: { color1 } }}
+                >
+                  <ListItemIcon>
+                    <EditIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="鎖櫃登記" />
+                </ListItemButton>
+                <ListItemButton
+                  selected={selectedIndex === "2"}
+                  onClick={(event) => handleListItemClick(event, "2")}
+                  style={{ color: { color2 } }}
+                >
+                  <ListItemIcon>
+                    <SearchIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="查詢登記" />
+                </ListItemButton>
+              </List>
+            </Box>
           </List>
         </Drawer>
         <Main open={open}></Main>
@@ -203,4 +181,4 @@ function Ham() {
   );
 }
 
-export default Ham;
+export default Hamburgar;
