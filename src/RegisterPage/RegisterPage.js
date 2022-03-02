@@ -42,27 +42,27 @@ function RegisterPage(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (num == "" && checkrule == false) {
-      sethelperTextError("非暢遊會員,無法登記鎖櫃!");
-      setcolor("red");
-      setnumerror(true);
-    } else if (num == "" && checkrule != false) {
-      sethelperTextError("非暢遊會員,無法登記鎖櫃!");
-      setnumerror(true);
-      setcolor("black");
-    } else if (num == "") {
-      sethelperTextError("非暢遊會員,無法登記鎖櫃!");
-      setnumerror(true);
+    if (num == "") {
+      if(checkrule){
+        sethelperTextError("請填寫手機號碼");
+        setnumerror(true);
+        setcolor("black");
+      }
+      else{
+        sethelperTextError("請填寫手機號碼");
+        setcolor("red");
+        setnumerror(true);
+      }
     } else if (checkrule == false) {
       setcolor("red");
     } else if (Object.keys(chipData).length == 0) {
+      setnumerror(false);
       setOpen(true);
     } else {
       setcolor("black");
       let lock = `${chipData}`;
       const json = JSON.stringify({ phoneNumber: num, priority: lock });
-      axios
-        .post("api/registerLocker", JSON.parse(json))
+      axios.post("api/registerLocker", JSON.parse(json))
         .then(response => 
           {
             history("/RegisterFinishPage");
