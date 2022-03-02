@@ -1,6 +1,5 @@
 import * as React from "react";
 import MenuBar from "../components/MenuBar";
-import Box from "@mui/material/Box";
 import Button from '@mui/material/Button';
 import Monologo from "../pic/monologo.png";
 import Text1 from "../components/Text1";
@@ -21,10 +20,8 @@ function Home() {
       <div className="Logo">
         <img src={Monologo} alt="Monologo" />
       </div>
-      <div className="Bigbox">
         <div className="Text1"><Text1 /></div>
         <div className="Text2"><Text2 /></div>
-      </div>
       <div className="Botton">
         <Stack  spacing={1}>
           <Link href="/registerPage" underline="none"><Button variant="contained" fullWidth startIcon={<EditIcon />} >
