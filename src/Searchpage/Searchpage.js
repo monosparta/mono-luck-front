@@ -1,7 +1,7 @@
 import * as React from "react";
 import MenuBar from "../components/MenuBar";
 import {Box,Button,TextField} from "@mui/material";
-import "./SearchPage.css";
+import "./searchpage.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -29,19 +29,10 @@ function SearchPage() {
     }
   };
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <div className="box">
       <MenuBar name="查詢登記" />
-
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        <Box
-          sx={{
-            display: "flex",
-            position: "relative",
-            top: "20px",
-            alignItems: "center",
-            "& > :not(style)": { m: 1 },
-          }}
-        >
+        <div className="phoneenter">
           <TextField
             id="outlined-password-input"
             label="手機號碼"
@@ -50,12 +41,13 @@ function SearchPage() {
             error={numerror}
             fullWidth
           />
-        </Box>
+        </div>
+        <div className="finishbutton">
           <Button fullWidth variant="contained" type="submit">
             完成
-          </Button>
+          </Button></div>
       </form>
-    </Box>
+    </div>
   );
 }
 export default SearchPage;

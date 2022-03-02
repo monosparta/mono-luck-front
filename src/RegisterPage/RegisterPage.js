@@ -259,7 +259,7 @@ function RegisterPage(props) {
           </div>
         </div>
       </div>
-      <div>
+      <div className="choose">
         <Paper
           sx={{
             display: "flex",
@@ -270,7 +270,7 @@ function RegisterPage(props) {
           }}
           component="ul"
         >
-          <div>選擇鎖櫃:</div>
+          <div className="Textchoose">選擇鎖櫃:</div>
           {chipData.map((data) => {
             let icon;
             return (
@@ -303,7 +303,7 @@ function RegisterPage(props) {
           </Link>
         </div>
         <div className="buttonsend">
-          <Button variant="contained" type="submit" fullWidth>
+          <Button variant="contained" type="submit" fullWidth >
             送出
           </Button>
         </div>
