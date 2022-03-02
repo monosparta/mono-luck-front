@@ -75,7 +75,7 @@ function RegisterPage(props) {
             }else if (error.response.status == 403){
               sethelperTextError("您已登記過鎖櫃!");
             }else{
-              sethelperTextError("出現無法預測的錯誤，請詢問櫃檯");
+              sethelperTextError("出現無法預測的錯誤,請詢問櫃檯");
             }
           }
         )
@@ -279,7 +279,7 @@ function RegisterPage(props) {
           </div>
         </div>
       </div>
-      <div>
+      <div className="choose">
         <Box
           sx={{
             display: "flex",
@@ -288,7 +288,7 @@ function RegisterPage(props) {
           }}
           component="ul"
         >
-          <div>選擇鎖櫃:</div>
+          <div className="Textchoose">選擇鎖櫃:</div>
           {chipData.map((data) => {
             let icon;
             return (
@@ -333,7 +333,7 @@ function RegisterPage(props) {
           </Link>
         </div>
         <div className="buttonsend">
-          <Button variant="contained" type="submit" fullWidth>
+          <Button variant="contained" type="submit" fullWidth >
             送出
           </Button>
         </div>
