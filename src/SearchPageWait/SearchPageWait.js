@@ -3,6 +3,7 @@ import MenuBar from "../components/MenuBar";
 import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import './SearchPageWait.css'
 
 function SearchPageWait() {
   let history = useNavigate();
@@ -10,15 +11,17 @@ function SearchPageWait() {
     history("/");
   };
   return (
-    <div>
-      <MenuBar name="查詢登記" />
+    <div className="bigbox">
+      <MenuBar name="查詢登記"/>
+      <div className="content" >
       <Typography variant="body2" component="div">
-        <div>目前鎖櫃尚在登記中，</div>
-        <div>請在 12/12 AM 10 回來本系統查看中籤資訊</div>
+        <div className="waiting">目前鎖櫃尚在登記中，</div>
+        <div className="date">請在 12/12 AM 10 回來本系統查看中籤資訊</div>
       </Typography>
-      <Button variant="contained" onClick={handleclick}>
+      <div className="button">
+      <Button variant="contained" fullWidth onClick={handleclick}>
         完成
-      </Button>
+      </Button></div></div>
     </div>
   );
 }

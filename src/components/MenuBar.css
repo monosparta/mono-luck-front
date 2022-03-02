@@ -1,0 +1,28 @@
+.barlogo{
+    position: relative;
+    left: 16px;
+    top: 10px;
+}
+.bartext1{
+    position: relative;
+    left: 16px;
+    top: 10px;
+}
+.bartext2{
+    position: relative;
+    left: 16px;
+    opacity: 60%;
+    top: 10px;
+
+}
+.barbutton1{
+    position: relative;
+    width: 304px;
+    top: 15px;
+}
+.barbutton2{
+    position: relative;
+    width: 304px;
+    top: 10px;
+
+}

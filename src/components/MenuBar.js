@@ -5,6 +5,7 @@ import Avatar from '../pic/Avatar.png';
 import CreateIcon from "@mui/icons-material/Create";
 import SearchIcon from "@mui/icons-material/Search";
 import { AppBar, Toolbar, Typography, IconButton } from "@material-ui/core";
+import '../components/MenuBar.css';
 function MenuBar(props) {
   const [state, setState] = React.useState({
     top: false,
@@ -29,14 +30,19 @@ function MenuBar(props) {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        <img src={Avatar} alt="Avatar" loading="lazy" />
-        <Typography variant="h6" component="div">
+        <div className="barlogo">
+        <img src={Avatar} alt="Avatar" loading="lazy" /></div>
+        <div className="bartext1"><Typography variant="h6" component="div">
           MonoLuck
         </Typography>
+        </div>
+        <div className="bartext2">
         <Typography variant="body2" component="div">
           Monosparta
         </Typography>
+        </div>
         <ListItem disablePadding>
+          <div className="barbutton1">
           <Link href="/registerPage" underline="none">
             <ListItemButton>
               <ListItemIcon>
@@ -45,8 +51,10 @@ function MenuBar(props) {
               <ListItemText primary="鎖櫃登記" />
             </ListItemButton>
           </Link>
+          </div>
         </ListItem>
         <ListItem disablePadding>
+        <div className="barbutton1">
           <Link href="/searchPage" underline="none">
             <ListItemButton>
               <ListItemIcon>
@@ -55,6 +63,7 @@ function MenuBar(props) {
               <ListItemText primary="查詢登記" />
             </ListItemButton>
           </Link>
+          </div>
         </ListItem>
       </List>
     </Box>
