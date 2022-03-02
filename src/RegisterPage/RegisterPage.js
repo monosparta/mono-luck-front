@@ -2,7 +2,7 @@ import * as React from "react";
 import "./RegisterPage.css";
 import { useState } from "react";
 import MenuBar from "../components/MenuBar";
-//import axios from "../Axios.config";
+import axios from "../Axios.config";
 import {
   ToggleButtonGroup,
   ToggleButton,
@@ -41,8 +41,6 @@ function RegisterPage(props) {
   };
 
   const handleSubmit = (e) => {
-    setnumerror(false);
-    sethelperTextError("請輸入您的手機號碼");
     e.preventDefault();
     if (num == "" && checkrule == false) {
       sethelperTextError("非暢遊會員,無法登記鎖櫃!");
@@ -60,18 +58,27 @@ function RegisterPage(props) {
     } else if (Object.keys(chipData).length == 0) {
       setOpen(true);
     } else {
+      setcolor("black");
       let lock = `${chipData}`;
-      const json = JSON.stringify({ phone: num, priority: lock });
-      /*axios
+      const json = JSON.stringify({ phoneNumber: num, priority: lock });
+      axios
         .post("api/registerLocker", JSON.parse(json))
-        .then((response) => console.log(response))
-        .catch((error) => console.log(error));
-      if (response) {
-        Handle 400
-      } else {
-        Handle else
-      }*/
-      history("/RegisterFinishPage");
+        .then(response => 
+          {
+            history("/RegisterFinishPage");
+          }
+        ).catch((error) =>
+          {
+            setnumerror(true);
+            if(error.response.status == 404){
+              sethelperTextError("非暢遊會員,無法登記鎖櫃!");
+            }else if (error.response.status == 403){
+              sethelperTextError("您已登記過鎖櫃!");
+            }else{
+              sethelperTextError("出現無法預測的錯誤,請詢問櫃檯");
+            }
+          }
+        )
     }
   };
 
