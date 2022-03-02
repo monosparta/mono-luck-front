@@ -21,6 +21,8 @@
   margin-top: 10px;
   font-size: 14px;
   opacity: 60%;
+  width: fit-content;
+  margin: 0 auto;
 }
 .buttongroup{
   position: relative;
@@ -66,4 +68,8 @@
 .dialog{
   text-align: center;
 }
-
+.divider{
+  position: relative;
+  width: 450px;
+  margin: 0 auto;
+}

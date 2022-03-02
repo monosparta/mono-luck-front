@@ -299,7 +299,7 @@ function RegisterPage(props) {
           })}
         </Box>
       </div>
-      <Divider variant="middle" />
+      <div className="divider"><Divider variant="middle" /></div>
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
         <div className="phonenumber">
           <TextField
@@ -311,7 +311,7 @@ function RegisterPage(props) {
             fullWidth
           />
         </div>
-        <div>
+        <div className="rules">
           <FormControlLabel
             label="我已閱讀且同意遵守"
             control={
@@ -323,8 +323,6 @@ function RegisterPage(props) {
             }
             sx={{ color: { color } }}
           />
-        </div>
-        <div>
           <Link
             target="_blank"
             href="https://monospace.guide/books/manual/page/31fef"
@@ -358,7 +356,7 @@ function RegisterPage(props) {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} autoFocus>
+            <Button onClick={handleClose} autoFocus >
               確認
             </Button>
           </DialogActions>
