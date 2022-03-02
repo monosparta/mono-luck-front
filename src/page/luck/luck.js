@@ -26,12 +26,16 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import TagFacesIcon from "@mui/icons-material/TagFaces";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 const ChipListItem = styled("li")(({ theme }) => ({
   margin: theme.spacing(0.5),
 }));
-
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const drawerWidth = 240;
 
@@ -79,9 +83,46 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
+const CssTextField = styled(TextField)({
+  "& .MuiFormHelperText-root": {
+    "&.Mui-focused": {
+      //提示文字
+      color: "#1976d2",
+    },
+  },
+  "& label.Mui-focused": {
+    //上排文字
+    color: "#1976d2",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "grey",
+    },
+    "&:hover fieldset": {
+      borderColor: "black",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#1976d2", //FIELD 框
+    },
+  },
+});
+
 function App() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [Dialogopen, setDialogOpen] = React.useState(false);
+  const [checkBoxCheck, setCheckBoxCheck] = React.useState(false);
+  const [color, setColor] = React.useState("#6d6d6d");
+  const [devices, setDevices] = React.useState(() => ["00", "02", "05"]);
+  const [chipData, setChipData] = React.useState([]);
+  const [checknum, setChecknum] = React.useState([]);
+  const [phone, setPhone] = React.useState("");
+  const [error, setError] = React.useState(false);
+  const [helperText, setHelperText] = React.useState("請輸入您的手機號碼");
+
+  const handleClose = () => {
+    setDialogOpen(false);
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -90,46 +131,23 @@ function App() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const CssTextField = styled(TextField)({
-    "& .MuiFormHelperText-root": {
-      "&.Mui-focused": {
-        color: "#1976d2",
-      },
-    },
-    "& label.Mui-focused": {
-      color: "#1976d2",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "#1976d2",
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "grey",
-      },
-      "&:hover fieldset": {
-        borderColor: "black",
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "#1976d2",
-      },
-    },
-  });
 
-  const [devices, setDevices] = React.useState(() => ["00", "02", "05"]);
-  const [chipData, setChipData] = React.useState([]);
   const handleDevices = (event, newDevices) => {
     if (newDevices.length <= 3) {
       setDevices(newDevices);
       setChipData(newDevices);
+      setChecknum(newDevices);
       console.log(newDevices);
     }
     if (newDevices.length > 3) {
       newDevices.shift();
       setDevices(newDevices);
       setChipData(newDevices);
+      setChecknum(newDevices);
       console.log(newDevices);
     }
   };
+
   const handleDelete = (chipToDelete) => () => {
     setChipData((chips) => chips.filter((chip) => chip !== chipToDelete));
     devices.forEach(function (item, index, arr) {
@@ -137,14 +155,38 @@ function App() {
         arr.splice(index, 1);
       }
     });
+
     console.log(chipToDelete);
   };
-  const [FiledValue, setFiledValue] = React.useState("");
 
-  const handleTextField = (event) => {
-    setFiledValue(event.target.value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
-  console.log(FiledValue);
+
+  console.log(phone);
+
+  const checkboxChange = () => {
+    setCheckBoxCheck(!checkBoxCheck);
+    console.log(checkBoxCheck);
+    if (checkBoxCheck === false) {
+      setColor("#6d6d6d");
+    }
+  };
+
+  const handleClickOpen = () => {
+    if (checknum.length <= 0) {
+      setDialogOpen(true);
+    }
+    if (checkBoxCheck === false) {
+      setColor("#B00020");
+    }
+    if (phone === "") {
+      setError(true);
+      setHelperText("非暢遊會員,無法登記鎖櫃!");
+      console.log("reset style");
+    }
+  };
+
   return (
     <div className="Table">
       <Box sx={{ display: "flex" }}>
@@ -762,7 +804,7 @@ function App() {
           </div>
         </div>
 
-        <form>
+        <form novalidate onSubmit={handleSubmit}>
           <div className="textfield">
             <Box
               component="form"
@@ -775,18 +817,60 @@ function App() {
               <CssTextField
                 id="outlined-helperText"
                 label="手機號碼"
-                helperText="請輸入您的手機號碼"
-                onChange={handleTextField}
+                error={error}
+                helperText={helperText}
+                value={phone}
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                }}
               />
             </Box>
+          </div>
+
+          <div>
+            <Dialog
+              open={Dialogopen}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                <img src="https://imgur.com/mLzAkGV.png" alt="warning"></img>
+                <p>{"您尚未選擇鎖櫃"}</p>
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  請點擊欲租借的鎖櫃編號，可選三項，須至少輸入一項
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} autoFocus>
+                  確認
+                </Button>
+              </DialogActions>
+            </Dialog>
           </div>
 
           <div className="agree">
             <div className="agreeItem">
               <div>
-                <Checkbox {...label} />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={checkBoxCheck}
+                      onChange={checkboxChange}
+                      sx={{
+                        color: { color },
+                      }}
+                    />
+                  }
+                  label="我已閱讀且同意遵守"
+                  sx={{
+                    color: { color },
+                  }}
+                />
               </div>
-              <p>我已閱讀且同意遵守　</p>
+
               <a
                 href="https://monospace.guide/books/manual/page/31fef"
                 target="_blank"
@@ -803,7 +887,9 @@ function App() {
                 <Button
                   variant="contained"
                   type="submit"
+                  value="submit"
                   style={{ width: 350, height: 40 }}
+                  onClick={handleClickOpen}
                 >
                   <p>送出</p>
                 </Button>

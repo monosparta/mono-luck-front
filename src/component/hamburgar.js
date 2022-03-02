@@ -1,5 +1,4 @@
 import React from "react";
-import "./luck.css";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -73,7 +72,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-function App() {
+function Ham() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -204,4 +203,4 @@ function App() {
   );
 }
 
-export default App;
+export default Ham;
