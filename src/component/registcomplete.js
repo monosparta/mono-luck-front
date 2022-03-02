@@ -2,11 +2,14 @@ import React from "react";
 import "./registcomplete.css";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import Hamburgar from "./hamburgar";
 
 function Registcomplete() {
   return (
     <div className="Table">
-      <img src="https://imgur.com/gczuDrA.png"></img>
+      <Hamburgar />
+      
+      <img className="Nike" src="https://imgur.com/gczuDrA.png" alt=""></img>
       <h1>登記成功</h1>
       <h2>
         鎖櫃抽選時間為

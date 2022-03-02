@@ -1,43 +1,45 @@
+* {
+  margin: 0;
+  border: 0;
+  box-sizing: 0;
+}
+
 .button {
-  margin: 0 auto;
-  color: #02a2ee;
+  margin: 8px;
+  padding: 8px;
 }
 .Table {
   margin: 0 auto;
   width: 350px;
-  padding: 30px 0;
+  padding: 30px ;
 }
 
 .home {
   text-align: center;
 }
-
-img {
-  border-radius: 0px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  margin: 24px 0px;
-  position: static;
+.Logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position:relative;
+  margin: 0 auto; 
+  
 }
-h1 {
-  border-radius: nullpx;
-  font-family: Roboto;
+
+
+.Title1 {
+  margin: 6px 0px;
   font-size: 34px;
   font-style: normal;
   font-weight: 400;
-  line-height: 36px;
-  letter-spacing: 0px;
   text-align: center;
+  position:relative;
 }
-h2 {
-  border-radius: nullpx;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
+.Title2 {
+  margin: 0 auto;
   font-size: 14px;
   line-height: 20px;
   text-align: center;
-  letter-spacing: 0.25px;
   color: #00000099;
+  position:relative;
 }

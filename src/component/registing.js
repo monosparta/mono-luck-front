@@ -2,10 +2,13 @@ import React from "react";
 import "./registing.css";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import Hamburgar from "./hamburgar";
+
 
 function Registing() {
   return (
     <div className="Table">
+      <Hamburgar />
       <h2>
         目前鎖櫃尚在登記中，
         <br />

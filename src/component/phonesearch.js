@@ -4,14 +4,17 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import Hamburgar from "./hamburgar";
+
 
 function Phonesearch() {
   return (
     <div className="Table">
+       <Hamburgar />
       <Box
         component="form"
         sx={{
-          "& > :not(style)": { m: 1, width: "40ch" },
+          "& > :not(style)": { m: 1, width: "38ch" },
         }}
         noValidate
         autoComplete="off"
@@ -23,9 +26,9 @@ function Phonesearch() {
           helperText="請輸入您的手機號碼"
         />
       </Box>
-      <div class="button">
+      <div class="Done">
         <Stack direction="row" spacing={2}>
-          <Button variant="contained" style={{ width: 380, height: 40 }}>
+          <Button variant="contained" style={{ width: 350, height: 40 }}>
             完成
           </Button>
         </Stack>

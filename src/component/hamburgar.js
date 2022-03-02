@@ -1,16 +1,10 @@
 import React from "react";
-import "./luck.css";
 import Box from "@mui/material/Box";
+import "./hamburgar.css";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
-import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { styled, useTheme } from "@mui/material/styles";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -23,9 +17,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import Chip from "@mui/material/Chip";
-import Paper from "@mui/material/Paper";
-import TagFacesIcon from "@mui/icons-material/TagFaces";
+
 
 const drawerWidth = 240;
 
@@ -73,7 +65,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-function App() {
+function Hamburgar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -84,61 +76,7 @@ function App() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const CssTextField = styled(TextField)({
-    "& .MuiFormHelperText-root": {
-      "&.Mui-focused": {
-        color: "#1976d2",
-      },
-    },
-    "& label.Mui-focused": {
-      color: "#1976d2",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "#1976d2",
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "grey",
-      },
-      "&:hover fieldset": {
-        borderColor: "black",
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "#1976d2",
-      },
-    },
-  });
-
-  const [devices, setDevices] = React.useState(() => ["00", "02", "05"]);
-  const [chipData, setChipData] = React.useState([]);
-  const handleDevices = (event, newDevices) => {
-    if (newDevices.length <= 3) {
-      setDevices(newDevices);
-      setChipData(newDevices);
-      console.log(newDevices);
-    }
-    if (newDevices.length > 3) {
-      newDevices.shift();
-      setDevices(newDevices);
-      setChipData(newDevices);
-      console.log(newDevices);
-    }
-  };
-  const handleDelete = (chipToDelete) => () => {
-    setChipData((chips) => chips.filter((chip) => chip !== chipToDelete));
-    devices.forEach(function (item, index, arr) {
-      if (item === chipToDelete) {
-        arr.splice(index, 1);
-      }
-    });
-    console.log(chipToDelete);
-  };
-  const [FiledValue, setFiledValue] = React.useState("");
-
-  const handleTextField = (event) => {
-    setFiledValue(event.target.value);
-  };
-  console.log(FiledValue);
+  
   return (
     <div className="Table">
       <Box sx={{ display: "flex" }}>
@@ -155,7 +93,7 @@ function App() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              鎖櫃登記
+              首頁
             </Typography>
           </Toolbar>
         </AppBar>
@@ -183,7 +121,9 @@ function App() {
           </DrawerHeader>
 
           <List>
-            <img src="https://imgur.com/PJgYdab.png" alt="mono"></img>
+          <div className="sidebarimage">
+            <img src="https://imgur.com/PJgYdab.png" alt=""></img>
+            </div>
             <div className="drawer">
               <p className="drawer-title">MonoLuck</p>
               <p className="drawer-content">Monosparta</p>
@@ -204,4 +144,4 @@ function App() {
   );
 }
 
-export default App;
+export default Hamburgar;
