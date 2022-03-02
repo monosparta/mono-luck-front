@@ -13,10 +13,10 @@ function RegisterFinishPage() {
      
     };
   return (
-    <div>
+    <div >
       <MenuBar name="登記成功" />
-      <CheckCircleOutlineIcon />
-      <Typography variant="h4" component="div">
+      <CheckCircleOutlineIcon color="Secondary"/>
+      <Typography variant="h4" component="div" >
         登記成功
       </Typography>
       <Typography variant="body2" component="div">

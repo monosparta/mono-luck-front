@@ -2,12 +2,12 @@ import * as React from "react";
 import "./RegisterPage.css";
 import { useState } from "react";
 import MenuBar from "../components/MenuBar";
-import axios from "../Axios.config" ;
+//import axios from "../Axios.config";
 import {
   ToggleButtonGroup,
   ToggleButton,
   TextField,
-  Paper,
+  Box,
   Link,
   Button,
   Chip,
@@ -18,10 +18,12 @@ import {
   DialogContentText,
   DialogTitle,
   Divider,
+  Typography,
+  FormControlLabel
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import ErrorIcon from "@mui/icons-material/Error";
 
 function RegisterPage(props) {
   let history = useNavigate();
@@ -33,7 +35,7 @@ function RegisterPage(props) {
   const [checkrule, setcheckrule] = useState(false);
   const [chipData, setChipData] = useState(() => []);
   const [Open, setOpen] = useState(false);
-
+  const [color, setcolor] = useState("black");
   const handleClose = () => {
     setOpen(false);
   };
@@ -42,28 +44,39 @@ function RegisterPage(props) {
     setnumerror(false);
     sethelperTextError("請輸入您的手機號碼");
     e.preventDefault();
-    if (num == "" || checkrule == false) {
+    if (num == "" && checkrule == false) {
+      sethelperTextError("非暢遊會員,無法登記鎖櫃!");
+      setcolor("red");
+      setnumerror(true);
+    } else if (num == "" && checkrule != false) {
       sethelperTextError("非暢遊會員,無法登記鎖櫃!");
       setnumerror(true);
+      setcolor("black");
+    } else if (num == "") {
+      sethelperTextError("非暢遊會員,無法登記鎖櫃!");
+      setnumerror(true);
+    } else if (checkrule == false) {
+      setcolor("red");
     } else if (Object.keys(chipData).length == 0) {
       setOpen(true);
     } else {
       let lock = `${chipData}`;
       const json = JSON.stringify({ phone: num, priority: lock });
-      axios
+      /*axios
         .post("api/registerLocker", JSON.parse(json))
         .then((response) => console.log(response))
         .catch((error) => console.log(error));
+      if (response) {
+        Handle 400
+      } else {
+         Handle else
+      }*/
       history("/RegisterFinishPage");
     }
   };
 
   const handleCheck = () => {
-    if (checkrule) {
-      setcheckrule(false);
-    } else {
-      setcheckrule(true);
-    }
+    setcheckrule(!checkrule);
   };
 
   const handleChangePhone = (e) => {
@@ -93,7 +106,7 @@ function RegisterPage(props) {
       <div class="Text1">請點擊欲租借的鎖櫃編號，可選三項，須至少輸入一項</div>
       <div>
         <div className="buttongroup">
-          <div className="group1">
+          <div className="group">
             <ToggleButtonGroup
               value={formats}
               onChange={handleFormat}
@@ -115,7 +128,7 @@ function RegisterPage(props) {
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
-          <div className="group2">
+          <div className="group">
             <ToggleButtonGroup
               value={formats}
               onChange={handleFormat}
@@ -137,7 +150,7 @@ function RegisterPage(props) {
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
-          <div className="group3">
+          <div className="group">
             <ToggleButtonGroup
               value={formats}
               onChange={handleFormat}
@@ -167,7 +180,7 @@ function RegisterPage(props) {
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
-          <div className="group4">
+          <div className="group">
             <ToggleButtonGroup
               value={formats}
               onChange={handleFormat}
@@ -197,7 +210,7 @@ function RegisterPage(props) {
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
-          <div className="group5">
+          <div className="group">
             <ToggleButtonGroup
               value={formats}
               onChange={handleFormat}
@@ -227,7 +240,7 @@ function RegisterPage(props) {
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
-          <div className="group6">
+          <div className="group">
             <ToggleButtonGroup
               value={formats}
               onChange={handleFormat}
@@ -260,13 +273,11 @@ function RegisterPage(props) {
         </div>
       </div>
       <div>
-        <Paper
+        <Box
           sx={{
             display: "flex",
             flexWrap: "wrap",
             listStyle: "none",
-            p: 0.5,
-            m: 0,
           }}
           component="ul"
         >
@@ -279,8 +290,9 @@ function RegisterPage(props) {
               </ListItem>
             );
           })}
-        </Paper>
+        </Box>
       </div>
+      <Divider variant="middle" />
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
         <div className="phonenumber">
           <TextField
@@ -292,9 +304,20 @@ function RegisterPage(props) {
             fullWidth
           />
         </div>
-        <div className="rules">
-          <Checkbox onChange={handleCheck} checked={checkrule} />
-          我已閱讀且同意遵守
+        <div>
+          <FormControlLabel
+            label="我已閱讀且同意遵守"
+            control={
+              <Checkbox
+                onChange={handleCheck}
+                checked={checkrule}
+                sx={{ color: { color } }}
+              />
+            }
+            sx={{ color: { color } }}
+          />
+        </div>
+        <div>
           <Link
             target="_blank"
             href="https://monospace.guide/books/manual/page/31fef"
@@ -316,13 +339,15 @@ function RegisterPage(props) {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">{"您尚未選擇鎖櫃"}</DialogTitle>
+          <DialogTitle id="alert-dialog-title" class="dialog">
+            <ErrorIcon color="primary" />
+            <Typography variant="subtitle1">您尚未選擇鎖櫃</Typography>
+          </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              <div>
-                <ErrorOutlineIcon />
-              </div>
-              <div>請點擊欲租借的鎖櫃編號，可選三項，須至少輸入一項</div>
+              <Typography variant="body2">
+                請點擊欲租借的鎖櫃編號，可選三項，須至少輸入一項
+              </Typography>
             </DialogContentText>
           </DialogContent>
           <DialogActions>

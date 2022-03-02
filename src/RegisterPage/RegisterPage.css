@@ -59,27 +59,11 @@
   margin: 0 auto;
   top: 10px;
 }
-.group1{
+.group{
   position: relative;
   margin-top: 10px;
 }
-.group2{
-  position: relative;
-  margin-top: 10px;
+.dialog{
+  text-align: center;
 }
-.group3{
-  position: relative;
-  margin-top: 10px;
-}
-.group4{
-  position: relative;
-  margin-top: 10px;
-}
-.group5{
-  position: relative;
-  margin-top: 10px;
-}
-.group6{
-  position: relative;
-  margin-top: 10px;
-}
+
