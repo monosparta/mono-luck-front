@@ -2,6 +2,7 @@ import * as React from "react";
 import "./RegisterPage.css";
 import { useState } from "react";
 import MenuBar from "../components/MenuBar";
+import axios from "../Axios.config" ;
 import {
   ToggleButtonGroup,
   ToggleButton,
@@ -20,13 +21,14 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
 function RegisterPage(props) {
   let history = useNavigate();
   const [formats, setFormats] = useState(() => []);
   const [num, setnum] = useState("");
-  const [helperTextCorrect, sethelperTextError] =useState("請輸入您的手機號碼");
+  const [helperTextCorrect, sethelperTextError] =
+    useState("請輸入您的手機號碼");
   const [numerror, setnumerror] = useState(false);
   const [checkrule, setcheckrule] = useState(false);
   const [chipData, setChipData] = useState(() => []);
@@ -46,6 +48,12 @@ function RegisterPage(props) {
     } else if (Object.keys(chipData).length == 0) {
       setOpen(true);
     } else {
+      let lock = `${chipData}`;
+      const json = JSON.stringify({ phone: num, priority: lock });
+      axios
+        .post("api/registerLocker", JSON.parse(json))
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error));
       history("/RegisterFinishPage");
     }
   };
@@ -251,7 +259,7 @@ function RegisterPage(props) {
           </div>
         </div>
       </div>
-      <div >
+      <div>
         <Paper
           sx={{
             display: "flex",
@@ -287,7 +295,10 @@ function RegisterPage(props) {
         <div className="rules">
           <Checkbox onChange={handleCheck} checked={checkrule} />
           我已閱讀且同意遵守
-          <Link target="_blank" href="https://monospace.guide/books/manual/page/31fef">
+          <Link
+            target="_blank"
+            href="https://monospace.guide/books/manual/page/31fef"
+          >
             新制會員物品管理規範
           </Link>
         </div>
@@ -308,7 +319,9 @@ function RegisterPage(props) {
           <DialogTitle id="alert-dialog-title">{"您尚未選擇鎖櫃"}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              <div><ErrorOutlineIcon/></div>
+              <div>
+                <ErrorOutlineIcon />
+              </div>
               <div>請點擊欲租借的鎖櫃編號，可選三項，須至少輸入一項</div>
             </DialogContentText>
           </DialogContent>

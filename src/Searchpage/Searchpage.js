@@ -1,7 +1,7 @@
 import * as React from "react";
 import MenuBar from "../components/MenuBar";
 import {Box,Button,TextField} from "@mui/material";
-import "./Searchpage.css";
+import "./SearchPage.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
