@@ -1,4 +1,4 @@
-/*import Axios from "axios"
+import Axios from "axios"
 const axios = (baseURL) => {
 const instance = Axios.create({
 baseURL: baseURL || 'http://localhost:3000', //back-end
@@ -8,4 +8,4 @@ timeout: 1000,
 return instance;
 }
 export {axios};
-export default axios();*/
+export default axios();
