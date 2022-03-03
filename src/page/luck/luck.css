@@ -134,3 +134,8 @@
 .num {
   font-weight: bold;
 }
+
+.dialog {
+  text-align: center;
+  width: 100%;
+}

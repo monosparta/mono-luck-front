@@ -78,7 +78,7 @@ function Hamburgar() {
   const titleMap = [
     { path: "/", title: "首頁" },
     { path: "/Luck", title: "鎖櫃登記" },
-    { path: "/Complete", title: "登記成功 Quiz" },
+    { path: "/Complete", title: "登記成功" },
     { path: "/Inquiry", title: "查詢登記" },
     { path: "/Noyetopen", title: "查詢登記" },
   ];

@@ -53,7 +53,7 @@ function App() {
   const [Dialogopen, setDialogOpen] = React.useState(false);
   const [checkBoxCheck, setCheckBoxCheck] = React.useState(false);
   const [color, setColor] = React.useState("#6d6d6d");
-  const [devices, setDevices] = React.useState(() => ["00", "02", "05"]);
+  const [devices, setDevices] = React.useState(() => []);
   const [chipData, setChipData] = React.useState([]);
   const [checknum, setChecknum] = React.useState([]);
   const [phone, setPhone] = React.useState("");
@@ -709,8 +709,13 @@ function App() {
                 aria-describedby="alert-dialog-description"
               >
                 <DialogTitle id="alert-dialog-title">
-                  <img src="https://imgur.com/mLzAkGV.png" alt="warning"></img>
-                  <p>{"您尚未選擇鎖櫃"}</p>
+                  <div className="dialog">
+                    <img
+                      src="https://imgur.com/mLzAkGV.png"
+                      alt="warning"
+                    ></img>
+                    <p>{"您尚未選擇鎖櫃"}</p>
+                  </div>
                 </DialogTitle>
                 <DialogContent>
                   <DialogContentText id="alert-dialog-description">
