@@ -18,7 +18,7 @@ function SearchPageWait() {
       <MenuBar name="查詢登記"/>
       <div className="content" >
       <Typography variant="body2" component="div">
-      <div>{message}</div>
+      <div className="waitingtext">{message}</div>
       </Typography>
       <div className="button">
       <Button variant="contained" fullWidth onClick={handleclick}>
