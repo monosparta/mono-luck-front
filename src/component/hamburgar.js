@@ -1,7 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import "./hamburgar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useEffect } from "react-router-dom";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
@@ -71,6 +71,46 @@ function Hamburgar() {
   const [color1, setColor1] = React.useState("#000000");
   const [color2, setColor2] = React.useState("#000000");
   const [drawerText, setDrawerText] = React.useState("首頁");
+  const [state, setState] = React.useState({
+    left: false,
+    bottom: false,
+  });
+  const titleMap = [
+    { path: "/", title: "首頁" },
+    { path: "/Luck", title: "鎖櫃登記" },
+    { path: "/Complete", title: "登記成功 Quiz" },
+    { path: "/Inquiry", title: "查詢登記" },
+    { path: "/Noyetopen", title: "查詢登記" },
+  ];
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+  const list = (anchor) => (
+    <Box
+      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    />
+  );
+
+  let curLoc = useLocation();
+  React.useEffect(() => {
+    const curTitle = titleMap.find((item) => item.path === curLoc.pathname);
+    if (curTitle && curTitle.title) {
+      setDrawerText(curTitle.title);
+      document.title = curTitle.title;
+    }
+  }, [curLoc]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -94,6 +134,7 @@ function Hamburgar() {
     }
   };
   console.log("c1:" + color1 + ",c2:" + color2);
+
   return (
     <div className="Sidebar">
       <Box sx={{ display: "flex" }}>

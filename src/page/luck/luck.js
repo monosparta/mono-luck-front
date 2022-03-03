@@ -1,6 +1,7 @@
 import React from "react";
 import "./luck.css";
 import TagFacesIcon from "@mui/icons-material/TagFaces";
+import { useNavigate } from "react-router-dom";
 import {
   Dialog,
   DialogActions,
@@ -58,6 +59,7 @@ function App() {
   const [phone, setPhone] = React.useState("");
   const [error, setError] = React.useState(false);
   const [helperText, setHelperText] = React.useState("請輸入您的手機號碼");
+  const navigate = useNavigate();
 
   const handleClose = () => {
     setDialogOpen(false);
@@ -113,9 +115,11 @@ function App() {
       setColor("#6d6d6d");
     }
   };
-
-  const handleClickOpen = () => {};
-
+  const handleClick = () => {
+    if (checkBoxCheck === true && phone !== "") {
+      navigate("/Complete");
+    }
+  };
   return (
     <div>
       <div className="Table">
@@ -759,7 +763,7 @@ function App() {
                     type="submit"
                     value="submit"
                     style={{ width: 350, height: 40 }}
-                    onClick={handleClickOpen}
+                    onClick={handleClick}
                   >
                     <p>送出</p>
                   </Button>
