@@ -22,7 +22,7 @@ function Home() {
       <div className="Text22">鎖櫃登記系統</div>
       <div className="Botton">
         <Stack  spacing={1}>
-          <Link href="/registerPage" underline="none"><Button variant="contained" fullWidth startIcon={<EditIcon />} >
+          <Link href="/registerPage" underline="none"><Button variant="contained" fullWidth startIcon={<EditIcon />} style={{backgroundColor: '#02A2EE', color: '#FFFFFF'}}>
           鎖櫃登記
           </Button></Link>
           <Link href="/searchPage" underline="none"><Button variant="outlined" fullWidth startIcon={<SearchOutlinedIcon />}>

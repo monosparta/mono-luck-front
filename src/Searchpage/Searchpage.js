@@ -57,7 +57,7 @@ function SearchPage() {
           />
         </div>
         <div className="finishbutton">
-          <Button fullWidth variant="contained" type="submit">
+          <Button fullWidth variant="contained" type="submit" style={{backgroundColor: '#02A2EE', color: '#FFFFFF'}}>
             完成
           </Button></div>
       </form>

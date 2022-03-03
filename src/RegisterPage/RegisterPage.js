@@ -330,7 +330,7 @@ function RegisterPage(props) {
           </Link>
         </div>
         <div className="buttonsend">
-          <Button variant="contained" type="submit" fullWidth>
+          <Button variant="contained" type="submit" fullWidth style={{backgroundColor: '#02A2EE', color: '#FFFFFF'}}>
             送出
           </Button>
         </div>
@@ -354,7 +354,7 @@ function RegisterPage(props) {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} autoFocus>
+            <Button onClick={handleClose} autoFocus >
               確認
             </Button>
           </DialogActions>
