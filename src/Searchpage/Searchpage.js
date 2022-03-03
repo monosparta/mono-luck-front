@@ -4,6 +4,8 @@ import {Box,Button,TextField} from "@mui/material";
 import "./searchpage.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "../Axios.config";
+
 
 function SearchPage() {
   let history = useNavigate();
@@ -17,15 +19,27 @@ function SearchPage() {
     setnum(e.target.value);
   };
   const handleSubmit = (e) => {
-    setnumerror(false);
-    console.log(num);
-    sethelperTextError("請輸入您的手機號碼");
     e.preventDefault();
     if (num == "") {
-      sethelperTextError("非暢遊會員,無法登記鎖櫃!");
+      sethelperTextError("請輸入手機號碼!");
       setnumerror(true);
     } else {
-      history("/SearchPageWait");
+      axios
+        .get("/api/lottery",{
+          params : {
+            phoneNumber : num
+          }
+        }
+        ).then((response) => 
+          {
+            history("/SearchPageWait",{ state : response.data.message });
+          }
+        ).catch((error) =>
+          {
+            setnumerror(true);
+            sethelperTextError(error.response.data["message"]);         
+          }
+      )
     }
   };
   return (

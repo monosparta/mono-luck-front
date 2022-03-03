@@ -19,7 +19,7 @@ import {
   DialogTitle,
   Divider,
   Typography,
-  FormControlLabel
+  FormControlLabel,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
@@ -43,12 +43,11 @@ function RegisterPage(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (num == "") {
-      if(checkrule){
+      if (checkrule) {
         sethelperTextError("請填寫手機號碼");
         setnumerror(true);
         setcolor("black");
-      }
-      else{
+      } else {
         sethelperTextError("請填寫手機號碼");
         setcolor("red");
         setnumerror(true);
@@ -62,23 +61,16 @@ function RegisterPage(props) {
       setcolor("black");
       let lock = `${chipData}`;
       const json = JSON.stringify({ phoneNumber: num, priority: lock });
-      axios.post("api/registerLocker", JSON.parse(json))
-        .then(response => 
-          {
-            history("/RegisterFinishPage");
-          }
-        ).catch((error) =>
-          {
-            setnumerror(true);
-            if(error.response.status == 404){
-              sethelperTextError("非暢遊會員,無法登記鎖櫃!");
-            }else if (error.response.status == 403){
-              sethelperTextError("您已登記過鎖櫃!");
-            }else{
-              sethelperTextError("出現無法預測的錯誤,請詢問櫃檯");
-            }
-          }
-        )
+
+      axios
+        .post("api/registerLocker", JSON.parse(json))
+        .then((response) => {
+          history("/RegisterFinishPage");
+        })
+        .catch((error) => {
+          setnumerror(true);
+          sethelperTextError(error.response.data["message"]);
+        });
     }
   };
 
@@ -110,7 +102,12 @@ function RegisterPage(props) {
   return (
     <div class="box">
       <MenuBar name="鎖櫃登記" />
-      <div class="Text1">請點擊欲租借的鎖櫃編號，可選三項，須至少輸入一項</div>
+      <div className="Text1">
+      <Typography variant="body2">
+        請點擊欲租借的鎖櫃編號，可選三項，須至少輸入一項
+      </Typography>
+      </div>
+      <div className="divider2"><Divider variant="middle" /></div>
       <div>
         <div className="buttongroup">
           <div className="group">
@@ -299,7 +296,9 @@ function RegisterPage(props) {
           })}
         </Box>
       </div>
-      <div className="divider"><Divider variant="middle" /></div>
+      <div className="divider">
+        <Divider variant="middle" />
+      </div>
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
         <div className="phonenumber">
           <TextField
@@ -331,12 +330,11 @@ function RegisterPage(props) {
           </Link>
         </div>
         <div className="buttonsend">
-          <Button variant="contained" type="submit" fullWidth >
+          <Button variant="contained" type="submit" fullWidth>
             送出
           </Button>
         </div>
       </form>
-
       <div>
         <Dialog
           open={Open}
@@ -356,7 +354,7 @@ function RegisterPage(props) {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} autoFocus >
+            <Button onClick={handleClose} autoFocus>
               確認
             </Button>
           </DialogActions>
