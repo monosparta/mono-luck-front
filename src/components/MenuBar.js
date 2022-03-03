@@ -1,11 +1,20 @@
 import * as React from "react";
-import {List,ListItem,ListItemButton,ListItemIcon,ListItemText,Link,Box,Drawer} from "@mui/material";
+import {
+  Avatar,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Link,
+  Box,
+  Drawer,
+} from "@mui/material";
 import MenuIcon from "@material-ui/icons/Menu";
-import Avatar from '../pic/Avatar.png';
 import CreateIcon from "@mui/icons-material/Create";
 import SearchIcon from "@mui/icons-material/Search";
 import { AppBar, Toolbar, Typography, IconButton } from "@material-ui/core";
-import '../components/MenuBar.css';
+import "../components/MenuBar.css";
 function MenuBar(props) {
   const [state, setState] = React.useState({
     top: false,
@@ -31,38 +40,40 @@ function MenuBar(props) {
     >
       <List>
         <div className="barlogo">
-        <img src={Avatar} alt="Avatar" loading="lazy" /></div>
-        <div className="bartext1"><Typography variant="h6" component="div">
-          MonoLuck
-        </Typography>
+          <Avatar>H</Avatar>
+        </div>
+        <div className="bartext1">
+          <Typography variant="h6" component="div">
+            MonoLuck
+          </Typography>
         </div>
         <div className="bartext2">
-        <Typography variant="body2" component="div">
-          Monosparta
-        </Typography>
+          <Typography variant="body2" component="div">
+            Monosparta
+          </Typography>
         </div>
         <ListItem disablePadding>
           <div className="barbutton1">
-          <Link href="/registerPage" underline="none">
-            <ListItemButton>
-              <ListItemIcon>
-                <CreateIcon />
-              </ListItemIcon>
-              <ListItemText primary="鎖櫃登記" />
-            </ListItemButton>
-          </Link>
+            <Link href="/registerPage" underline="none">
+              <ListItemButton>
+                <ListItemIcon>
+                  <CreateIcon />
+                </ListItemIcon>
+                <ListItemText primary="鎖櫃登記" />
+              </ListItemButton>
+            </Link>
           </div>
         </ListItem>
         <ListItem disablePadding>
-        <div className="barbutton1">
-          <Link href="/searchPage" underline="none">
-            <ListItemButton>
-              <ListItemIcon>
-                <SearchIcon />
-              </ListItemIcon>
-              <ListItemText primary="查詢登記" />
-            </ListItemButton>
-          </Link>
+          <div className="barbutton1">
+            <Link href="/searchPage" underline="none">
+              <ListItemButton>
+                <ListItemIcon>
+                  <SearchIcon />
+                </ListItemIcon>
+                <ListItemText primary="查詢登記" />
+              </ListItemButton>
+            </Link>
           </div>
         </ListItem>
       </List>
