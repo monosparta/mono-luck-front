@@ -59,7 +59,9 @@ function MenuBar(props) {
                 <ListItemIcon>
                   <CreateIcon />
                 </ListItemIcon>
-                <ListItemText primary="鎖櫃登記" />
+                <Typography variant="subtitle2" style={{color: '#000000'}}>
+                  鎖櫃登記
+                </Typography>
               </ListItemButton>
             </Link>
           </div>
@@ -67,11 +69,13 @@ function MenuBar(props) {
         <ListItem disablePadding>
           <div className="barbutton1">
             <Link href="/searchPage" underline="none">
-              <ListItemButton>
+              <ListItemButton className="button123">
                 <ListItemIcon>
                   <SearchIcon />
                 </ListItemIcon>
-                <ListItemText primary="查詢登記" />
+                <Typography variant="subtitle2" style={{color: '#000000'}}>
+                查詢登記
+                </Typography>
               </ListItemButton>
             </Link>
           </div>
