@@ -35,12 +35,14 @@
 .choose{
   position: relative;
   width: 380px;
+  height: 48px;
   margin: 0 auto;
   margin-top: 5px;
 }
 .Textchoose{
   position: relative;
   width: 80px;
+  top: 2px;
   padding-top: 2px;
 }
 .phonenumber{

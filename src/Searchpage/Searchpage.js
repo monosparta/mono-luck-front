@@ -4,6 +4,8 @@ import {Box,Button,TextField} from "@mui/material";
 import "./searchpage.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "../Axios.config";
+
 
 function SearchPage() {
   let history = useNavigate();
@@ -25,7 +27,22 @@ function SearchPage() {
       sethelperTextError("非暢遊會員,無法登記鎖櫃!");
       setnumerror(true);
     } else {
-      history("/SearchPageWait");
+      axios
+        .get("/api/lottery",{
+          params : {
+            phoneNumber : num
+          }
+        }
+        ).then((response) => 
+          {
+            history("/RegisterFinishPage",{ state : response.data.message });
+          }
+        ).catch((error) =>
+          {
+            setnumerror(true);
+            sethelperTextError(error.response.message);         
+          }
+      )
     }
   };
   return (
