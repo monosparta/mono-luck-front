@@ -101,7 +101,12 @@ function RegisterPage(props) {
   return (
     <div class="box">
       <MenuBar name="鎖櫃登記" />
-      <div class="Text1">請點擊欲租借的鎖櫃編號，可選三項，須至少輸入一項</div>
+      <div className="Text1">
+      <Typography variant="body2">
+        請點擊欲租借的鎖櫃編號，可選三項，須至少輸入一項
+      </Typography>
+      </div>
+      <div className="divider2"><Divider variant="middle" /></div>
       <div>
         <div className="buttongroup">
           <div className="group">
@@ -329,7 +334,6 @@ function RegisterPage(props) {
           </Button>
         </div>
       </form>
-
       <div>
         <Dialog
           open={Open}

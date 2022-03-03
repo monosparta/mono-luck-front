@@ -18,6 +18,7 @@
 }
 .Text1{
   position: relative;
+  top:20px;
   margin-top: 10px;
   font-size: 14px;
   opacity: 60%;
@@ -29,6 +30,7 @@
   display: flexbox;
   width: 336px;
   height: 368px;
+  top: 50px;
   margin-top: 20px;
   margin: 0 auto;
 }
@@ -37,7 +39,7 @@
   width: 380px;
   height: 48px;
   margin: 0 auto;
-  margin-top: 5px;
+  margin-top: 45px;
 }
 .Textchoose{
   position: relative;
@@ -48,20 +50,20 @@
 .phonenumber{
   position: relative;
   width: 380px;
-  top: 10px;
+  top: 15px;
   margin: 0 auto;
 }
 .rules{
   position: relative;
   width: 380px;
   margin: 0 auto;
-  top :10px;
+  top :20px;
 }
 .buttonsend{
   position: relative;
   width: 380px;
+  top: 30px;
   margin: 0 auto;
-  top: 10px;
 }
 .group{
   position: relative;
@@ -73,5 +75,11 @@
 .divider{
   position: relative;
   width: 450px;
+  margin: 0 auto;
+}
+.divider2{
+  position: relative;
+  width: 420px;
+  top: 30px;
   margin: 0 auto;
 }

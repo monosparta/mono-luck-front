@@ -19,12 +19,9 @@ function SearchPage() {
     setnum(e.target.value);
   };
   const handleSubmit = (e) => {
-    setnumerror(false);
-    console.log(num);
-    sethelperTextError("請輸入您的手機號碼");
     e.preventDefault();
     if (num == "") {
-      sethelperTextError("非暢遊會員,無法登記鎖櫃!");
+      sethelperTextError("請輸入手機號碼!");
       setnumerror(true);
     } else {
       axios
@@ -35,12 +32,12 @@ function SearchPage() {
         }
         ).then((response) => 
           {
-            history("/RegisterFinishPage",{ state : response.data.message });
+            history("/SearchPageWait",{ state : response.data.message });
           }
         ).catch((error) =>
           {
             setnumerror(true);
-            sethelperTextError(error.response.message);         
+            sethelperTextError(error.response.data["message"]);         
           }
       )
     }
