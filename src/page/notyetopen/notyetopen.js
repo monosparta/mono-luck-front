@@ -1,12 +1,10 @@
 import React from "react";
 import "./notyetopen.css";
-import Hamburgar from "../../component/hamburgar";
 import { Button, Stack } from "@mui/material";
 
 function App() {
   return (
     <div>
-      <Hamburgar />
       <div className="Notyetopen">
         <div className="notyetopenText">
           <p>

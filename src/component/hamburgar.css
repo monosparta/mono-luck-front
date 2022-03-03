@@ -18,3 +18,8 @@
 .SidebarText p {
   margin: 0px;
 }
+
+.Sidebar a {
+  text-decoration: none;
+  color: #000;
+}

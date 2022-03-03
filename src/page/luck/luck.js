@@ -1,6 +1,5 @@
 import React from "react";
 import "./luck.css";
-import Hamburgar from "../../component/hamburgar";
 import TagFacesIcon from "@mui/icons-material/TagFaces";
 import {
   Dialog,
@@ -93,19 +92,6 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  };
-
-  console.log(phone);
-
-  const checkboxChange = () => {
-    setCheckBoxCheck(!checkBoxCheck);
-    console.log(checkBoxCheck);
-    if (checkBoxCheck === false) {
-      setColor("#6d6d6d");
-    }
-  };
-
-  const handleClickOpen = () => {
     if (checknum.length <= 0) {
       setDialogOpen(true);
     }
@@ -118,9 +104,20 @@ function App() {
     }
   };
 
+  console.log(phone);
+
+  const checkboxChange = () => {
+    setCheckBoxCheck(!checkBoxCheck);
+    console.log(checkBoxCheck);
+    if (checkBoxCheck === false) {
+      setColor("#6d6d6d");
+    }
+  };
+
+  const handleClickOpen = () => {};
+
   return (
     <div>
-      <Hamburgar />
       <div className="Table">
         <div className="content">
           <div className="directions">
@@ -677,7 +674,7 @@ function App() {
             </div>
           </div>
 
-          <form novalidate onSubmit={handleSubmit}>
+          <form novalidate autoComplete="off" onSubmit={handleSubmit}>
             <div className="textfield">
               <Box
                 component="form"

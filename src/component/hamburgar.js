@@ -1,6 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import "./hamburgar.css";
+import { Link } from "react-router-dom";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
@@ -69,6 +70,7 @@ function Hamburgar() {
   const [open, setOpen] = React.useState(false);
   const [color1, setColor1] = React.useState("#000000");
   const [color2, setColor2] = React.useState("#000000");
+  const [drawerText, setDrawerText] = React.useState("首頁");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -108,7 +110,7 @@ function Hamburgar() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              首頁
+              {drawerText}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -151,26 +153,33 @@ function Hamburgar() {
               }}
             >
               <List component="nav" aria-label="main mailbox folders">
-                <ListItemButton
-                  selected={selectedIndex === "1"}
-                  onClick={(event) => handleListItemClick(event, "1")}
-                  style={{ color: { color1 } }}
-                >
-                  <ListItemIcon>
-                    <EditIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="鎖櫃登記" />
-                </ListItemButton>
-                <ListItemButton
-                  selected={selectedIndex === "2"}
-                  onClick={(event) => handleListItemClick(event, "2")}
-                  style={{ color: { color2 } }}
-                >
-                  <ListItemIcon>
-                    <SearchIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="查詢登記" />
-                </ListItemButton>
+                <Link to="/Luck" className="link">
+                  <ListItemButton
+                    selected={selectedIndex === "1"}
+                    onClick={(event) => {
+                      handleListItemClick(event, "1");
+                    }}
+                    style={{ color: { color1 } }}
+                  >
+                    <ListItemIcon>
+                      <EditIcon />
+                    </ListItemIcon>
+
+                    <ListItemText primary="鎖櫃登記" />
+                  </ListItemButton>
+                </Link>
+                <Link to="/Inquiry" className="link">
+                  <ListItemButton
+                    selected={selectedIndex === "2"}
+                    onClick={(event) => handleListItemClick(event, "2")}
+                    style={{ color: { color2 } }}
+                  >
+                    <ListItemIcon>
+                      <SearchIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="查詢登記" />
+                  </ListItemButton>
+                </Link>
               </List>
             </Box>
           </List>

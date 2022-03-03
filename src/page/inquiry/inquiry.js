@@ -1,6 +1,5 @@
 import React from "react";
 import "./inquiry.css";
-import Hamburgar from "../../component/hamburgar";
 import { Button, Stack } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -8,7 +7,6 @@ import TextField from "@mui/material/TextField";
 function App() {
   return (
     <div>
-      <Hamburgar />
       <div className="Inquiry">
         <div className="searchArea">
           <Box
