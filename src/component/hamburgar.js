@@ -13,8 +13,6 @@ import List from "@mui/material/List";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItemButton from "@mui/material/ListItemButton";
 import EditIcon from "@mui/icons-material/Edit";
 import SearchIcon from "@mui/icons-material/Search";
@@ -68,8 +66,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 function Hamburgar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [color1, setColor1] = React.useState("#000000");
-  const [color2, setColor2] = React.useState("#000000");
+  const [color1, setColor1] = React.useState("");
+  const [color2, setColor2] = React.useState("");
   const [drawerText, setDrawerText] = React.useState("首頁");
   const [state, setState] = React.useState({
     left: false,
@@ -122,6 +120,7 @@ function Hamburgar() {
   const [selectedIndex, setSelectedIndex] = React.useState("0");
 
   const handleListItemClick = (event, index) => {
+    setOpen(false);
     setSelectedIndex(index);
     console.log(index);
     if (index === "1") {
@@ -168,16 +167,6 @@ function Hamburgar() {
           anchor="left"
           open={open}
         >
-          <DrawerHeader>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "ltr" ? (
-                <ChevronLeftIcon />
-              ) : (
-                <ChevronRightIcon />
-              )}
-            </IconButton>
-          </DrawerHeader>
-
           <List>
             <div className="SidebarImg">
               <img src="https://imgur.com/PJgYdab.png" alt=""></img>
