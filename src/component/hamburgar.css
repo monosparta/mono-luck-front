@@ -1,5 +1,5 @@
 .SidebarImg {
-  margin: 30px 0 16px 16px;
+  margin: 40px 16px 0 16px;
 }
 
 .SidebarText {
@@ -13,6 +13,7 @@
 
 .SidebarContent {
   font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .SidebarText p {
@@ -23,6 +24,15 @@
   text-decoration: none;
   color: #000;
 }
-.sidebarimage {
-  margin: 0 16px;
+
+.appbar button {
+  margin: 0;
+}
+.link {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.6);
+}
+.link > div:hover {
+  background: #e1f4fd;
+  color: #02a2ee;
 }

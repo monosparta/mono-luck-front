@@ -1,33 +1,10 @@
 import React from "react";
 import "./inquiry.css";
-import { Button, Stack, styled } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
-
-const CssTextField = styled(TextField)({
-  "& .MuiFormHelperText-root": {
-    "&.Mui-focused": {
-      //提示文字
-      color: "#1976d2",
-    },
-  },
-  "& label.Mui-focused": {
-    //上排文字
-    color: "#1976d2",
-  },
-  "& .MuiOutlinedInput-root": {
-    "& fieldset": {
-      borderColor: "grey",
-    },
-    "&:hover fieldset": {
-      borderColor: "black",
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: "#1976d2", //FIELD 框
-    },
-  },
-});
+import axios from "../../axios.config";
 
 function App() {
   const navigate = useNavigate();
@@ -35,58 +12,54 @@ function App() {
   const [phone, setPhone] = React.useState("");
   const [helperText, setHelperText] = React.useState("請輸入您的手機號碼");
 
-  const handleClick = () => {
+  const handleClick = (event) => {
     if (phone !== "" && phone.length === 10 && !isNaN(phone)) {
-      navigate("/Noyetopen");
-    }
-  };
+      navigate("/Complete");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+      event.preventDefault();
+    }
     if (phone === "" || phone.length !== 10) {
       setError(true);
       setHelperText("非暢遊會員,無法登記鎖櫃!");
     }
   };
+
   return (
     <div>
-      <form novalidate autoComplete="off" onSubmit={handleSubmit}>
-        <div className="Inquiry">
-          <div className="searchArea">
-            <Box
-              component="form"
-              sx={{
-                "& > :not(style)": { m: 1, width: "38ch" },
+      <div className="Inquiry">
+        <div className="searchArea">
+          <Box
+            component="form"
+            sx={{
+              "& > :not(style)": { width: " 380px " },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-helperText"
+              label="手機號碼"
+              error={error}
+              helperText={helperText}
+              value={phone}
+              onChange={(e) => {
+                setPhone(e.target.value.replace(/[^\d.]/g, ""));
               }}
-              noValidate
-              autoComplete="off"
-            >
-              <CssTextField
-                id="outlined-helperText"
-                label="手機號碼"
-                error={error}
-                helperText={helperText}
-                value={phone}
-                onChange={(e) => {
-                  setPhone(e.target.value.replace(/[^\d.]/g, ""));
-                }}
-              />
-            </Box>
-            <div class="Done">
-              <Stack direction="row" spacing={2}>
-                <Button
-                  variant="contained"
-                  style={{ width: 350, height: 40 }}
-                  onClick={handleClick}
-                  type="submit"
-                >
-                  完成
-                </Button>
-              </Stack>
-            </div>
+            />
+          </Box>
+          <div class="Done">
+            <Stack direction="row" spacing={2}>
+              <Button
+                variant="contained"
+                style={{ width: 380, height: 40 }}
+                onClick={handleClick}
+              >
+                完成
+              </Button>
+            </Stack>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

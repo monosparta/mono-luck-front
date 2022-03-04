@@ -9,7 +9,7 @@
   background-color: #cfcfcf;
   width: 350px;
   height: 1px;
-  margin-top: 5px;
+  margin-top: 15px;
   left: calc(50% - 175px);
 }
 
@@ -106,7 +106,7 @@
   padding: 8px;
 }
 
-.Tableluck img {
+.Table img {
   position: absolute;
   left: 16px;
 }

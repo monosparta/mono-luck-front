@@ -1,8 +1,8 @@
 import React from "react";
 import "./luck.css";
-import TagFacesIcon from "@mui/icons-material/TagFaces";
 import axios from "../../axios.config";
 import { useNavigate } from "react-router-dom";
+import TagFacesIcon from "@mui/icons-material/TagFaces";
 import {
   Dialog,
   DialogActions,
@@ -139,7 +139,6 @@ function App() {
         });
     }
   };
-
   return (
     <div>
       <div className="Table">
@@ -703,7 +702,7 @@ function App() {
               <Box
                 component="form"
                 sx={{
-                  "& > :not(style)": { m: 1, width: "38ch" },
+                  "& > :not(style)": { width: "380px" },
                 }}
                 noValidate
                 autoComplete="off"
