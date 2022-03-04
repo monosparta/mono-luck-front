@@ -116,13 +116,23 @@ function App() {
       setColor("#6d6d6d");
     }
   };
-  const handleClick = () => {
+  const handleClick = (event) => {
+    // alert('A name was submitted: ' + phone+devices);
+ 
+
     if (
       checkBoxCheck === true &&
       phone !== "" &&
       phone.length === 10 &&
       !isNaN(phone)
     ) {
+      event.preventDefault();
+      const json = JSON.stringify({ phone : phone,locker_id : devices});
+      
+        //console.log("phone:" + phone +"number:" + devices);
+      axios.post("api/Registion",JSON.parse(json))
+      .then( (response) => {console.log(JSON.stringify(response))})
+      .catch( (error) => {console.log(error)});
       navigate("/Complete");
     }
   };
