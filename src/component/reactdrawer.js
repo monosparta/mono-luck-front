@@ -32,15 +32,6 @@ export default function TemporaryDrawer() {
     { path: "/Noyetopen", title: "查詢登記" },
   ];
 
-  let curLoc = useLocation();
-  React.useEffect(() => {
-    const curTitle = titleMap.find((item) => item.path === curLoc.pathname);
-    if (curTitle && curTitle.title) {
-      setDrawerText(curTitle.title);
-      document.title = curTitle.title;
-    }
-  }, [curLoc]);
-
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -67,17 +58,14 @@ export default function TemporaryDrawer() {
               <p className="SidebarTitle">MonoLuck</p>
               <p className="SidebarContent">Monosparta</p>
             </div> */}
-
-        <ListItem button key="鎖櫃登記">
-          <ListItemIcon>
-            <EditIcon />
-          </ListItemIcon>
-          <ListItemText primary="鎖櫃登記" />
-          <ListItemIcon>
-            <SearchIcon />
-          </ListItemIcon>
-          <ListItemText primary="查詢登記" />
-        </ListItem>
+        {["鎖櫃登記", "查詢登記"].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>
+              {index % 2 === 0 ? <EditIcon /> : <SearchIcon />}
+            </ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
       </List>
     </Box>
   );

@@ -125,7 +125,6 @@ function App() {
     ) {
       navigate("/Complete");
 
-      alert("A name was submitted: " + phone + devices);
       event.preventDefault();
       const json = JSON.stringify({ phone: phone, locker_id: devices });
 

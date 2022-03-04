@@ -122,14 +122,14 @@ function Hamburgar() {
   const handleListItemClick = (event, index) => {
     setOpen(false);
     setSelectedIndex(index);
-    console.log(index);
-    if (index === "1") {
+    let val = index;
+    if (val == "1") {
       setColor1("#02A2EE");
-      setColor2("#000000");
+      setColor2("");
     }
-    if (index === "2") {
+    if (val == "2") {
       setColor2("#02A2EE");
-      setColor1("#000000");
+      setColor1("");
     }
   };
   console.log("c1:" + color1 + ",c2:" + color2);

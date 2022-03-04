@@ -39,48 +39,54 @@ function App() {
     if (phone !== "" && phone.length === 10 && !isNaN(phone)) {
       navigate("/Noyetopen");
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (phone === "" || phone.length !== 10) {
       setError(true);
       setHelperText("非暢遊會員,無法登記鎖櫃!");
     }
   };
-
   return (
     <div>
-      <div className="Inquiry">
-        <div className="searchArea">
-          <Box
-            component="form"
-            sx={{
-              "& > :not(style)": { m: 1, width: "38ch" },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <CssTextField
-              id="outlined-helperText"
-              label="手機號碼"
-              error={error}
-              helperText={helperText}
-              value={phone}
-              onChange={(e) => {
-                setPhone(e.target.value.replace(/[^\d.]/g, ""));
+      <form novalidate autoComplete="off" onSubmit={handleSubmit}>
+        <div className="Inquiry">
+          <div className="searchArea">
+            <Box
+              component="form"
+              sx={{
+                "& > :not(style)": { m: 1, width: "38ch" },
               }}
-            />
-          </Box>
-          <div class="Done">
-            <Stack direction="row" spacing={2}>
-              <Button
-                variant="contained"
-                style={{ width: 350, height: 40 }}
-                onClick={handleClick}
-              >
-                完成
-              </Button>
-            </Stack>
+              noValidate
+              autoComplete="off"
+            >
+              <CssTextField
+                id="outlined-helperText"
+                label="手機號碼"
+                error={error}
+                helperText={helperText}
+                value={phone}
+                onChange={(e) => {
+                  setPhone(e.target.value.replace(/[^\d.]/g, ""));
+                }}
+              />
+            </Box>
+            <div class="Done">
+              <Stack direction="row" spacing={2}>
+                <Button
+                  variant="contained"
+                  style={{ width: 350, height: 40 }}
+                  onClick={handleClick}
+                  type="submit"
+                >
+                  完成
+                </Button>
+              </Stack>
+            </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
