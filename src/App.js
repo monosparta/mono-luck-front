@@ -7,6 +7,8 @@ import Complete from "./page/complete/complete";
 import Inquiry from "./page/inquiry/inquiry";
 import Notyetopen from "./page/notyetopen/notyetopen";
 import Hamburgar from "./component/hamburgar";
+import Appbar from "./component/appbar";
+import Reactdrawer from "./component/reactdrawer";
 
 const Layout = (props) => {
   return (

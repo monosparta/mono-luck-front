@@ -59,7 +59,7 @@
 .agreeItem,
 .disagreeItem {
   margin: auto;
-  width: 380px;
+  width: 340px;
   display: flex;
   align-items: center;
   justify-content: flex-start;

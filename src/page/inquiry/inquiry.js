@@ -36,10 +36,10 @@ function App() {
   const [helperText, setHelperText] = React.useState("請輸入您的手機號碼");
 
   const handleClick = () => {
-    if (phone !== "") {
+    if (phone !== "" && phone.length === 10 && !isNaN(phone)) {
       navigate("/Noyetopen");
     }
-    if (phone === "") {
+    if (phone === "" || phone.length !== 10) {
       setError(true);
       setHelperText("非暢遊會員,無法登記鎖櫃!");
     }
@@ -64,7 +64,7 @@ function App() {
               helperText={helperText}
               value={phone}
               onChange={(e) => {
-                setPhone(e.target.value);
+                setPhone(e.target.value.replace(/[^\d.]/g, ""));
               }}
             />
           </Box>

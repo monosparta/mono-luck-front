@@ -1,6 +1,7 @@
 import React from "react";
 import "./luck.css";
 import TagFacesIcon from "@mui/icons-material/TagFaces";
+import axios from "../../axios.config";
 import { useNavigate } from "react-router-dom";
 import {
   Dialog,
@@ -100,7 +101,7 @@ function App() {
     if (checkBoxCheck === false) {
       setColor("#B00020");
     }
-    if (phone === "") {
+    if (phone === "" || phone.length !== 10) {
       setError(true);
       setHelperText("非暢遊會員,無法登記鎖櫃!");
     }
@@ -116,10 +117,16 @@ function App() {
     }
   };
   const handleClick = () => {
-    if (checkBoxCheck === true && phone !== "") {
+    if (
+      checkBoxCheck === true &&
+      phone !== "" &&
+      phone.length === 10 &&
+      !isNaN(phone)
+    ) {
       navigate("/Complete");
     }
   };
+
   return (
     <div>
       <div className="Table">
@@ -695,7 +702,7 @@ function App() {
                   helperText={helperText}
                   value={phone}
                   onChange={(e) => {
-                    setPhone(e.target.value);
+                    setPhone(e.target.value.replace(/[^\d.]/g, ""));
                   }}
                 />
               </Box>
