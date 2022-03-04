@@ -123,16 +123,22 @@ function App() {
       phone.length === 10 &&
       !isNaN(phone)
     ) {
-      navigate("/Complete");
-
       event.preventDefault();
       const json = JSON.stringify({ phone: phone, locker_id: devices });
 
-      console.log("phone:" + phone + "number:" + devices);
+      //console.log("phone:" + phone +"number:" + devices);
       axios
         .post("api/Registion", JSON.parse(json))
         .then((response) => {
-          console.log(JSON.stringify(response));
+          if (response.data === "success") {
+            navigate("/Complete");
+          } else {
+            if (response.data === "no find phone.") {
+              setHelperText("非暢遊會員,無法登記鎖櫃!");
+            } else {
+              setHelperText("您已登記過鎖櫃");
+            }
+          }
         })
         .catch((error) => {
           console.log(error);

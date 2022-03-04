@@ -13,15 +13,35 @@ function App() {
   const [helperText, setHelperText] = React.useState("請輸入您的手機號碼");
 
   const handleClick = (event) => {
-    if (phone !== "" && phone.length === 10 && !isNaN(phone)) {
-      navigate("/Complete");
+    event.preventDefault();
+    const json = JSON.stringify({ phone: phone });
 
-      event.preventDefault();
-    }
-    if (phone === "" || phone.length !== 10) {
-      setError(true);
-      setHelperText("非暢遊會員,無法登記鎖櫃!");
-    }
+    //console.log("phone:" + phone +"number:" + devices);
+    axios
+      .post("api/Locker", JSON.parse(json))
+      .then((response) => {
+        if (response.data === "you haven't got the locker yet") {
+          navigate("/Noyetopen");
+        } else {
+          if (response.data === "You have not registered yet") {
+            setError(true);
+            setHelperText("您尚未登記過鎖櫃");
+          } else {
+            setError(true);
+            setHelperText("非暢遊會員,無法登記鎖櫃!");
+          }
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // if (phone !== "" && phone.length === 10 && !isNaN(phone)) {
+    //   navigate("/Noyetopen");
+    // }
+    // if (phone === "" || phone.length !== 10) {
+    //   setError(true);
+    //   setHelperText("非暢遊會員,無法登記鎖櫃!");
+    // }
   };
 
   return (
