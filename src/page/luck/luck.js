@@ -117,20 +117,6 @@ function App() {
     }
   };
   const handleClick = (event) => {
-    alert("A name was submitted: " + phone + devices);
-    event.preventDefault();
-    const json = JSON.stringify({ phone: phone, locker_id: devices });
-
-    //console.log("phone:" + phone +"number:" + devices);
-    axios
-      .post("api/Registion", JSON.parse(json))
-      .then((response) => {
-        console.log(JSON.stringify(response));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
     if (
       checkBoxCheck === true &&
       phone !== "" &&
@@ -138,6 +124,20 @@ function App() {
       !isNaN(phone)
     ) {
       navigate("/Complete");
+
+      alert("A name was submitted: " + phone + devices);
+      event.preventDefault();
+      const json = JSON.stringify({ phone: phone, locker_id: devices });
+
+      console.log("phone:" + phone + "number:" + devices);
+      axios
+        .post("api/Registion", JSON.parse(json))
+        .then((response) => {
+          console.log(JSON.stringify(response));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
