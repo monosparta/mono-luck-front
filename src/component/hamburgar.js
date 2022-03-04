@@ -16,6 +16,8 @@ import MuiAppBar from "@mui/material/AppBar";
 import ListItemButton from "@mui/material/ListItemButton";
 import EditIcon from "@mui/icons-material/Edit";
 import SearchIcon from "@mui/icons-material/Search";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 const drawerWidth = 240;
 
@@ -123,11 +125,11 @@ function Hamburgar() {
     setOpen(false);
     setSelectedIndex(index);
     let val = index;
-    if (val == "1") {
+    if (val === "1") {
       setColor1("#02A2EE");
       setColor2("");
     }
-    if (val == "2") {
+    if (val === "2") {
       setColor2("#02A2EE");
       setColor1("");
     }
@@ -168,12 +170,12 @@ function Hamburgar() {
           open={open}
         >
           <List>
-            <div className="SidebarImg">
+            <div className="sidebarimage">
               <img src="https://imgur.com/PJgYdab.png" alt=""></img>
             </div>
-            <div className="SidebarText">
-              <p className="SidebarTitle">MonoLuck</p>
-              <p className="SidebarContent">Monosparta</p>
+            <div className="drawer">
+              <p className="drawer-title">MonoLuck</p>
+              <p className="drawer-content">Monosparta</p>
             </div>
             <Box
               sx={{

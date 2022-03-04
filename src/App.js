@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./page/index/index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "./page/index/index";
 import Luckpage from "./page/luck/luck";
@@ -7,7 +7,6 @@ import Complete from "./page/complete/complete";
 import Inquiry from "./page/inquiry/inquiry";
 import Notyetopen from "./page/notyetopen/notyetopen";
 import Hamburgar from "./component/hamburgar";
-import Drawer from "./component/reactdrawer";
 
 const Layout = (props) => {
   return (
